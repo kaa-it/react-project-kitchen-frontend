@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function ListErrors(props) {
-  const errors = props.errors;
-  if (errors) {
+const ListErrors = ({errors}) => {
+  const errorsObj = errors;
+  if (errorsObj) {
     return (
         <ul className="error-messages">
           {
-            Object.keys(errors).map(key => {
+            Object.keys(errorsObj).map(key => {
               return (
                   <li key={key}>
-                    {key} {errors[key]}
+                    {key} {errorsObj[key]}
                   </li>
               );
             })
@@ -19,6 +20,10 @@ function ListErrors(props) {
   } else {
     return null;
   }
+}
+
+ListErrors.propTypes = {
+  errors: PropTypes.object.isRequired
 }
 
 export default ListErrors;
