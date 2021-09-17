@@ -1,0 +1,23 @@
+:local .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    row-gap: 8px;
+    border-bottom: 1px solid ;
+    border-bottom-color: var(--background-secondary);
+}
+
+:local .title {
+    composes: H1 from global;
+    text-shadow: 0 0 16px rgba(51, 51, 255, 0.25),
+                 0 0 8px rgba(51, 51, 255, 0.25),
+                 0 4px 32px rgba(51, 51, 255, 0.5);
+    color: var(--text-primary-color);
+}
+
+:local .subtitle {
+    composes: headline from global;
+    color: var(--text-primary-color);
+}
