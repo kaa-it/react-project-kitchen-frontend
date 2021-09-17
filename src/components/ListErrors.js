@@ -1,24 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function ListErrors(props) {
-  const errors = props.errors;
-  if (errors) {
+const ListErrors = ({ errors }) => {
+  const errorsObj = errors;
+  console.log(errors);
+  if (errorsObj) {
     return (
-        <ul className="error-messages">
-          {
-            Object.keys(errors).map(key => {
+      <ul className="error-messages">
+        {
+          Object.keys(errorsObj).map(key => {
+            if (typeof errorsObj[key] !== 'object') {
               return (
-                  <li key={key}>
-                    {key} {errors[key]}
-                  </li>
+                <li key={key}>
+                  {key}: {errorsObj[key]}
+                </li>
               );
-            })
-          }
-        </ul>
+            }
+            return null;
+          })
+        }
+      </ul>
     );
   } else {
     return null;
   }
+}
+
+ListErrors.propTypes = {
+  errors: PropTypes.shape({
+    username: PropTypes.string,
+    email: PropTypes.string,
+    message: PropTypes.string,
+  })
 }
 
 export default ListErrors;
