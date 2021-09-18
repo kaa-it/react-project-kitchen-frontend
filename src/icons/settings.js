@@ -1,7 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
+import PropTypes from "prop-types";
 
-const SettingsIcon = ({ type, onClick }) => {
+const SettingsIcon = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -28,6 +29,10 @@ const SettingsIcon = ({ type, onClick }) => {
       />
     </svg>
   );
+};
+
+SettingsIcon.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default SettingsIcon;

@@ -34,7 +34,7 @@ const LoggedInView = ({ currentUser }) => {
 
         <li>
           <Link to={`/@${currentUser.username}`} className={styles.nav_link}>
-            <AvatarIcon type="primary" />
+            <AvatarIcon />
             <span>{currentUser.username}</span>
           </Link>
         </li>
