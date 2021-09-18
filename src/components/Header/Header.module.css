@@ -1,0 +1,44 @@
+:local .navbar {
+    background: var(--background-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+:local .navbar_content {
+    width: 70%;
+    display: flex;
+    background: var(--background-secondary);
+    justify-content: space-between;
+    align-items: center;
+}
+
+:local .navbar_brand {
+    composes: headline from global;
+    text-shadow: 0 0 16px rgba(51, 51, 255, 0.25),
+                 0 0 8px rgba(51, 51, 255, 0.25),
+                 0 4px 32px rgba(51, 51, 255, 0.5);
+}
+
+:local .nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    column-gap: 34px;
+}
+
+:local .nav_link {
+    composes: text from global;
+    color: var(--text-primary-color);
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+}
+
+:local(.nav_link):focus, :local(.nav_link):hover {
+    color: var(--text-primary-color);
+    text-decoration: none;
+}
