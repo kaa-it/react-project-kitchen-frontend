@@ -1,4 +1,4 @@
-import Banner from "./Banner";
+import Banner from "./Banner/Banner";
 import MainView from "./MainView";
 import React from "react";
 import Tags from "./Tags";
@@ -47,7 +47,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner token={this.props.token} appName={this.props.appName} />
+        <Banner appName={this.props.appName} />
         <div className="container page">
           <div className="row">
             <MainView />
