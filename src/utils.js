@@ -3,6 +3,8 @@ const getColorByType = (type) => {
     return "#F2F2F3";
   } else if (type === "secondary") {
     return "#8585AD";
+  } else {
+    return "#F2F2F3";
   }
 };
 

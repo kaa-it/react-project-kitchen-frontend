@@ -1,7 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
+import PropTypes from "prop-types";
 
-const NewIcon = ({ type, onClick }) => {
+const NewIcon = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -28,6 +29,10 @@ const NewIcon = ({ type, onClick }) => {
       />
     </svg>
   );
+};
+
+NewIcon.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default NewIcon;

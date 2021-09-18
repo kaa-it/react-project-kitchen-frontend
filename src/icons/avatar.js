@@ -1,6 +1,6 @@
 import React from "react";
 
-const AvatarIcon = ({ type, onClick }) => {
+const AvatarIcon = () => {
   return (
     <svg
       width="24"

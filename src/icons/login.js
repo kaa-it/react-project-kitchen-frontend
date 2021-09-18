@@ -1,7 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
+import PropTypes from "prop-types";
 
-const LoginIcon = ({ type, onClick }) => {
+const LoginIcon = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -28,6 +29,10 @@ const LoginIcon = ({ type, onClick }) => {
       />
     </svg>
   );
+};
+
+LoginIcon.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default LoginIcon;
