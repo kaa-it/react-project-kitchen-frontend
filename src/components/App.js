@@ -15,6 +15,7 @@ import Register from '../components/Register';
 import Settings from '../components/Settings';
 import { store } from '../store';
 import { push } from 'connected-react-router';
+import { userPropTypes } from '../types';
 
 const mapStateToProps = state => {
   return {
@@ -39,7 +40,7 @@ const App = ({ appLoaded, appName, currentUser, onLoad, redirectTo, onRedirect }
 
     onLoad(token ? agent.Auth.current() : null, token);
     console.log(redirectTo);
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (redirectTo) {
@@ -47,7 +48,7 @@ const App = ({ appLoaded, appName, currentUser, onLoad, redirectTo, onRedirect }
       store.dispatch(push(redirectTo));
       onRedirect();
     }
-  }, [redirectTo])
+  }, [redirectTo]);
 
   return (
     <>
@@ -73,18 +74,12 @@ const App = ({ appLoaded, appName, currentUser, onLoad, redirectTo, onRedirect }
   );
 };
 
-
 App.propTypes = {
   appName: PropTypes.string,
   onLoad: PropTypes.func,
   appLoaded: PropTypes.bool,
-  currentUser: PropTypes.shape({
-    email: PropTypes.string,
-    image: PropTypes.string,
-    token: PropTypes.string,
-    username: PropTypes.string
-  }),
-  onRedirect: PropTypes.func
-}
+  currentUser: userPropTypes,
+  onRedirect: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
