@@ -1,0 +1,18 @@
+:local .input {
+  composes: text from global;
+  background: #2f2f37;
+  border-radius: 20px;
+  width: 540px;
+  height: 40px;
+  padding: 8px 16px;
+  border: none;
+  color: var(--text-primary-color);
+}
+
+:local .input::placeholder {
+  color: var(--text-secondary-color);
+}
+
+:local .input:focus {
+  outline: none;
+}

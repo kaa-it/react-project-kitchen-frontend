@@ -1,0 +1,10 @@
+:local .button {
+  background: #4c4cff;
+  padding: 8px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  border-radius: 20px;
+  color: #f2f2f3;
+  float: right;
+}
