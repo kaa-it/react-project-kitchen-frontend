@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { errorPropTypes } from '../types';
 
 const ListErrors = ({ errors }) => {
   const errorsObj = errors;
@@ -26,12 +26,6 @@ const ListErrors = ({ errors }) => {
   }
 }
 
-ListErrors.propTypes = {
-  errors: PropTypes.shape({
-    username: PropTypes.string,
-    email: PropTypes.string,
-    message: PropTypes.string,
-  })
-}
+ListErrors.propTypes = errorPropTypes;
 
 export default ListErrors;
