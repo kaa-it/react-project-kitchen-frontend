@@ -7,13 +7,12 @@ const userPropTypes = PropTypes.shape({
   image: PropTypes.string.isRequired,
 });
 
-const errorPropTypes = {
-  errors: PropTypes.shape({
-    username: PropTypes.string,
-    email: PropTypes.string,
-    message: PropTypes.string,
-  })
-}
+const errorPropTypes = PropTypes.shape({
+  username: PropTypes.string,
+  email: PropTypes.string,
+  message: PropTypes.string,
+})
+
 
 export {
   userPropTypes,

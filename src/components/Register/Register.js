@@ -97,16 +97,16 @@ function Register({ username, password, email, onChangeEmail, onChangePassword, 
 }
 
 Register.propTypes = {
-  username: PropType.string.isRequired,
-  password: PropType.string.isRequired,
-  email: PropType.string.isRequired,
+  username: PropType.string,
+  password: PropType.string,
+  email: PropType.string,
   onChangeEmail: PropType.func.isRequired,
   onChangePassword: PropType.func.isRequired,
   onChangeUsername: PropType.func.isRequired,
   onSubmit: PropType.func.isRequired,
   onUnload: PropType.func.isRequired,
   errors: errorPropTypes,
-  inProgress: PropType.bool.isRequired,
+  inProgress: PropType.bool,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

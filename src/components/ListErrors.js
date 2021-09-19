@@ -26,6 +26,8 @@ const ListErrors = ({ errors }) => {
   }
 }
 
-ListErrors.propTypes = errorPropTypes;
+ListErrors.propTypes = {
+  errors: errorPropTypes
+};
 
 export default ListErrors;
