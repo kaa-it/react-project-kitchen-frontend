@@ -1,5 +1,5 @@
 import ArticleList from './ArticleList';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import agent from '../agent';
 import { connect } from 'react-redux';
@@ -74,25 +74,14 @@ const mapDispatchToProps = dispatch => ({
   onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED })
 });
 
-class Profile extends React.Component {
-  componentWillMount() {
-    this.props.onLoad(Promise.all([
-      agent.Profile.get(this.props.match.params.username),
-      agent.Articles.byAuthor(this.props.match.params.username)
-    ]));
-  }
-
-  componentWillUnmount() {
-    this.props.onUnload();
-  }
-
-  renderTabs() {
+const Profile = (props) => {
+  const renderTabs = () => {
     return (
       <ul className="nav nav-pills outline-active">
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`/@${this.props.profile.username}`}>
+            to={`/@${props.profile.username}`}>
             My Articles
           </Link>
         </li>
@@ -100,7 +89,7 @@ class Profile extends React.Component {
         <li className="nav-item">
           <Link
             className="nav-link"
-            to={`/@${this.props.profile.username}/favorites`}>
+            to={`/@${props.profile.username}/favorites`}>
             Favorited Articles
           </Link>
         </li>
@@ -108,62 +97,58 @@ class Profile extends React.Component {
     );
   }
 
-  render() {
-    const profile = this.props.profile;
-    if (!profile) {
-      return null;
-    }
+  const profile = props.profile;
+  if (!profile) {
+    return null;
+  }
 
-    const isUser = this.props.currentUser &&
-      this.props.profile.username === this.props.currentUser.username;
+  const isUser = props.currentUser &&
+    props.profile.username === props.currentUser.username;
 
-    return (
-      <div className="profile-page">
+  return (
+    <div className="profile-page">
 
-        <div className="user-info">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-md-10 offset-md-1">
-
-                <img src={profile.image} className="user-img" alt={profile.username} />
-                <h4>{profile.username}</h4>
-                <p>{profile.bio}</p>
-
-                <EditProfileSettings isUser={isUser} />
-                <FollowUserButton
-                  isUser={isUser}
-                  user={profile}
-                  follow={this.props.onFollow}
-                  unfollow={this.props.onUnfollow}
-                  />
-
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div className="user-info">
         <div className="container">
           <div className="row">
-
             <div className="col-xs-12 col-md-10 offset-md-1">
 
-              <div className="articles-toggle">
-                {this.renderTabs()}
-              </div>
+              <img src={profile.image} className="user-img" alt={profile.username} />
+              <h4>{profile.username}</h4>
+              <p>{profile.bio}</p>
 
-              <ArticleList
-                pager={this.props.pager}
-                articles={this.props.articles}
-                articlesCount={this.props.articlesCount}
-                state={this.props.currentPage} />
+              <EditProfileSettings isUser={isUser} />
+              <FollowUserButton
+                isUser={isUser}
+                user={profile}
+                follow={props.onFollow}
+                unfollow={props.onUnfollow}
+                />
+
             </div>
-
           </div>
         </div>
-
       </div>
-    );
-  }
+
+      <div className="container">
+        <div className="row">
+
+          <div className="col-xs-12 col-md-10 offset-md-1">
+
+            <div className="articles-toggle">
+              {renderTabs()}
+            </div>
+
+            <ArticleList
+              pager={props.pager}
+              articles={props.articles}
+              articlesCount={props.articlesCount}
+              state={props.currentPage} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
