@@ -2,10 +2,9 @@ import ArticleList from "../../ArticleList";
 import React from "react";
 import { connect } from "react-redux";
 import { CHANGE_TAB } from "../../../constants/actionTypes";
+import agent from "../../../agent";
 import styles from "./MainView.module.css";
-import YourFeedTab from "./YourFeedTab";
-import GlobalFeedTab from "./GlobalFeedTab";
-import TagFilterTab from "./TagFilterTab";
+import Tab from "../../common/Tab/Tab";
 
 const mapStateToProps = (state) => ({
   ...state.articleList,
@@ -19,18 +18,33 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
+  const switchTab = (name) => {
+    switch (name) {
+      case "all": {
+        props.onTabClick("all", agent.Articles.all, agent.Articles.all());
+        break;
+      }
+      case "feed": {
+        props.onTabClick("feed", agent.Articles.feed, agent.Articles.feed());
+        break;
+      }
+    }
+  }
+
   return (
     <div className="col-md-9">
       <div className={styles.feed}>
-        <YourFeedTab
-          token={props.token}
-          tab={props.tab}
-          onTabClick={props.onTabClick}
-        />
+        {props.token && (
+          <Tab
+            value="feed"
+            active={props.tab === "feed"}
+            onClick={switchTab}
+          >Ваша лента</Tab>
+        )}
 
-        <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+        <Tab value="all" active={props.tab === "all"} onClick={switchTab}>Лента</Tab>
 
-        <TagFilterTab tag={props.tag} />
+        {props.tag && <Tab value="tag" active onClick={switchTab}>#{props.tag}</Tab>}
       </div>
 
       <ArticleList
