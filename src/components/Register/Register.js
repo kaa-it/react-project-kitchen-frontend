@@ -9,9 +9,9 @@ import {
   REGISTER_PAGE_UNLOADED
 } from '../../constants/actionTypes';
 import EyeIcon from '../../icons/EyeIcon';
-import Input from '../Input/Input';
+import Input from '../common/Input/Input';
 import registerStyle from './Register.module.css';
-import Button from '../Button/Button';
+import Button from '../common/Button/Button';
 import PropType from 'prop-types';
 import { errorPropTypes } from '../../types';
 
