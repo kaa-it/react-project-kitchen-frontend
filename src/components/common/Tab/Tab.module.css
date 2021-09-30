@@ -1,0 +1,33 @@
+:local .tab_common {
+    composes: text from global;
+    min-width: 120px;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+:local .tab {
+    composes: tab_common;
+    cursor: pointer;
+    text-align: center;
+    transition: var(--common-transition);
+}
+
+.tab_type_current {
+    composes: tab_common;
+    box-shadow: inset 0 -2px 0 #4C4CFF;
+    pointer-events: none;
+    color: var(--text-primary-color);
+}
+
+:local(.tab):hover,
+:local(.tab_type_current):hover,
+:local(.tab):focus,
+:local(.tab_type_current):focus
+{
+    color: var(--text-primary-color);
+    text-decoration: none;
+}

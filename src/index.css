@@ -4,6 +4,7 @@
     --text-secondary-color: #8585AD;
     --background: #131316;
     --background-secondary: #2F2F37;
+    --common-transition: all .3s ease-in;
 }
 
 body {

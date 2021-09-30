@@ -1,5 +1,5 @@
 import Banner from "./Banner/Banner";
-import MainView from "./MainView";
+import MainView from "./MainView/MainView";
 import React from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
