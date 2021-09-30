@@ -1,20 +1,20 @@
-import agent from '../agent';
-import Header from './Header/Header';
-import React, { useState, useEffect } from 'react';
+import agent from "../agent";
+import Header from "./Header/Header";
+import React, { useState, useEffect} from "react";
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
-import { Route, Switch } from 'react-router-dom';
-import Article from '../components/Article';
-import Editor from '../components/Editor';
-import Home from '../components/Home';
-import Login from '../components/Login';
-import Profile from '../components/Profile';
-import ProfileFavorites from '../components/ProfileFavorites';
-import Register from '../components/Register';
-import Settings from '../components/Settings';
-import { store } from '../store';
-import { push } from 'connected-react-router';
+import { connect } from "react-redux";
+import { APP_LOAD, REDIRECT } from "../constants/actionTypes";
+import { Route, Switch } from "react-router-dom";
+import Article from "../components/Article";
+import Editor from "../components/Editor";
+import Home from "../components/Home";
+import Login from "../components/Login";
+import Profile from "../components/profile/Profile";
+import ProfileFavorites from "../components/profile/ProfileFavorites";
+import Register from "../components/Register";
+import Settings from "../components/Settings";
+import { store } from "../store";
+import { push } from "connected-react-router";
 import { userPropTypes } from '../types';
 
 const mapStateToProps = state => {
