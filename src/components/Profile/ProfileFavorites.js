@@ -22,7 +22,7 @@ const ProfileFavorites = (props) => {
       agent.Articles.favoritedBy(props.match.params.username)
     ]));
     return () => props.onUnload();
-  }, []);
+  }, [props.match.params.username]);
 
   return (
     <ProfileRender {...props} favorite />

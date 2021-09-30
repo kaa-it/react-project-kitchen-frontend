@@ -1,53 +1,11 @@
 import ArticleList from "../ArticleList";
-import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 import Tab from "../common/Tab/Tab";
-import React from "react";
-
-const EditProfileSettings = props => {
-  if (props.isUser) {
-    return (
-      <Link
-        to="/settings"
-        className="btn btn-sm btn-outline-secondary action-btn">
-        <i className="ion-gear-a"/> Edit Profile Settings
-      </Link>
-    );
-  }
-  return null;
-};
-
-const FollowUserButton = props => {
-  if (props.isUser) {
-    return null;
-  }
-
-  let classes = 'btn btn-sm action-btn';
-  if (props.user.following) {
-    classes += ' btn-secondary';
-  } else {
-    classes += ' btn-outline-secondary';
-  }
-
-  const handleClick = ev => {
-    ev.preventDefault();
-    if (props.user.following) {
-      props.unfollow(props.user.username)
-    } else {
-      props.follow(props.user.username)
-    }
-  };
-
-  return (
-    <button
-      className={classes}
-      onClick={handleClick}>
-      <i className="ion-plus-round"/>
-      &nbsp;
-      {props.user.following ? 'Unfollow' : 'Follow'} {props.user.username}
-    </button>
-  );
-};
+import React, {useCallback} from "react";
+import Button from "../common/Button/Button";
+import SettingsIcon from "../../icons/settings";
+import MinusIcon from "../../icons/minus";
+import PlusIcon from "../../icons/plus";
 
 const ProfileRender = (props) => {
   const profile = props.profile;
@@ -71,28 +29,59 @@ const ProfileRender = (props) => {
     }
   };
 
+  const editSettings = (e) => {
+    e.preventDefault();
+    props.history.push("/settings");
+  };
+
+  const toggleFollow = useCallback((e) => {
+    e.preventDefault();
+    if (profile.following) {
+      props.onUnfollow(profile.username)
+    } else {
+      props.onFollow(profile.username)
+    }
+  }, [props.profile.following]);
+
   return (
     <div className="profile-page">
 
-      <div className="user-info">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-10 offset-md-1">
+      <div className={styles.user_info}>
+        <div className={styles.content}>
 
-              <img src={profile.image} className="user-img" alt={profile.username} />
-              <h4>{profile.username}</h4>
-              <p>{profile.bio}</p>
+              <img src={profile.image} className="user-img" alt={profile.username} width="120px" height="120px"/>
+              <span className={styles.username}>{profile.username}</span>
+              <span className={styles.text}>{profile.bio}</span>
 
-              <EditProfileSettings isUser={isUser} />
-              <FollowUserButton
-                isUser={isUser}
-                user={profile}
-                follow={props.onFollow}
-                unfollow={props.onUnfollow}
-                />
+              <div className={styles.actions}>
+                {isUser && (
+                    <Button disabled={false} onClick={editSettings}>
+                      <div className={styles.button_content}>
+                        <SettingsIcon type="primary" width="14px" height="14px"/>
+                        <span className={styles.text}>Настройки профиля</span>
+                      </div>
+                    </Button>
+                )}
 
-            </div>
-          </div>
+                {!isUser && (
+                    <Button disabled={false} onClick={toggleFollow}>
+                      <div className={styles.button_content}>
+                        {profile.following ? (
+                            <>
+                              <MinusIcon type="primary"/>
+                              <span className={styles.text}>Отписаться</span>
+                            </>
+                        ):(
+                            <>
+                            <PlusIcon type="primary"/>
+                          <span className={styles.text}>Подписаться</span>
+                            </>
+                        )}
+
+                      </div>
+                    </Button>
+                )}
+              </div>
         </div>
       </div>
 

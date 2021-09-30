@@ -36,7 +36,7 @@ const Profile = (props) => {
       agent.Articles.byAuthor(props.match.params.username)
     ]));
     return () => props.onUnload;
-  }, []);
+  }, [props.match.params.username]);
 
   return (
     <ProfileRender {...props} favorite={false}/>
