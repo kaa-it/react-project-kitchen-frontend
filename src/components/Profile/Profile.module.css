@@ -1,6 +1,48 @@
 :local .feed {
     display: flex;
     height: 56px;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid;
     border-bottom-color: var(--background-secondary);
+}
+
+:local .user_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    height: 276px;
+    border-bottom: 1px solid;
+    border-bottom-color: var(--background-secondary);
+}
+
+:local .content {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+}
+
+:local .username {
+    composes: headline from global;
+    color: var(--text-primary-color);
+}
+
+:local .text {
+    composes: text from global;
+    color: var(--text-primary-color);
+}
+
+:local .button_content {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+}
+
+:local .actions {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
 }

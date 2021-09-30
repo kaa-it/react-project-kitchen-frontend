@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 
 const Button = ({ onClick, type, children, disabled }) => {
     return (
-        <button className={buttonStyle.button} onClick={onClick} type={type} disabled={disabled}>
+        <button className={buttonStyle.button} onClick={onClick} type={type || "button"} disabled={disabled}>
             {children}
         </button>
     )
@@ -13,7 +13,7 @@ const Button = ({ onClick, type, children, disabled }) => {
 Button.propType = {
     onClick: PropType.func.isRequired,
     children: PropType.element.isRequired,
-    type: PropType.string.isRequired,
+    type: PropType.string,
     disabled: PropType.bool,
 }
 
