@@ -1,0 +1,6 @@
+:local .feed {
+    display: flex;
+    height: 56px;
+    border-bottom: 1px solid ;
+    border-bottom-color: var(--background-secondary);
+}

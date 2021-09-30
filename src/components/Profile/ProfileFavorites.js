@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { mapStateToProps } from './Profile';
 import agent from '../../agent';
 import {
@@ -25,30 +24,8 @@ const ProfileFavorites = (props) => {
     return () => props.onUnload();
   }, []);
 
-  const renderTabs = () => {
-    return (
-      <ul className="nav nav-pills outline-active">
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            to={`/@${props.profile.username}`}>
-            My Articles
-          </Link>
-        </li>
-  
-        <li className="nav-item">
-          <Link
-            className="nav-link active"
-            to={`/@${props.profile.username}/favorites`}>
-            Favorited Articles
-          </Link>
-        </li>
-      </ul>
-    );
-  }
-
   return (
-    <ProfileRender {...props} renderTabs={renderTabs} />
+    <ProfileRender {...props} favorite />
   );
 }
 
