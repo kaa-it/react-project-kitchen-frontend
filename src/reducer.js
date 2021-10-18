@@ -1,7 +1,7 @@
 import article from "./reducers/article";
 import articleList from "./reducers/articleList";
 import auth from "./reducers/auth";
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 import common from "./reducers/common";
 import editor from "./reducers/editor";
 import home from "./reducers/home";
