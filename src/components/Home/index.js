@@ -1,7 +1,7 @@
 import Banner from "./Banner/Banner";
 import MainView from "./MainView/MainView";
 import React from "react";
-import Tags from "./Tags/Tags";
+import Tags from "../common/Tags/Tags";
 import agent from "../../agent";
 import { connect } from "react-redux";
 import {

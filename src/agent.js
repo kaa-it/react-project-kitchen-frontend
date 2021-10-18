@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://cosmicteam.ddns.net:3000/api';
+const API_ROOT = "http://akruglov.ru:3000/api";
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;

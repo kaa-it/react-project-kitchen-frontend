@@ -51,7 +51,7 @@ const Tags = props => {
 
 Tags.propTypes = {
   tags: PropTypes.array,
-  onClickTag: PropTypes.func.isRequired
+  onClickTag: PropTypes.func
 };
 
 export default Tags;
