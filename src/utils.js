@@ -8,4 +8,6 @@ const getColorByType = (type) => {
   }
 };
 
-export { getColorByType };
+const API_ROOT = "http://akruglov.ru:3000/api";
+
+export { getColorByType, API_ROOT };
