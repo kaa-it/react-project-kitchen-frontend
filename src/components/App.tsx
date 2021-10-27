@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Article from "../components/Article";
 import Editor from "../components/Editor";
-import Home from "../components/Home";
+import Home from "./Home";
 import Login from "../components/Login";
 import Profile from "./Profile/Profile";
 import ProfileFavorites from "./Profile/ProfileFavorites";

@@ -1,6 +1,6 @@
 import Banner from "./Banner/Banner";
 import MainView from "./MainView/MainView";
-import React from "react";
+import React, { useEffect } from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
 import { connect } from "react-redux";
@@ -9,6 +9,7 @@ import {
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
 } from "../../constants/actionTypes";
+import { useAppSelector } from "../../services";
 
 const Promise = global.Promise;
 
@@ -25,6 +26,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 });
+
+const Home: React.FC = () => {
+  const { appName, token } = useAppSelector((state) => state.common);
+
+  useEffect(() => {}, []);
+};
 
 class Home extends React.Component {
   componentWillMount() {
