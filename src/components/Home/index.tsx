@@ -1,9 +1,7 @@
 import Banner from "./Banner/Banner";
 import MainView from "./MainView/MainView";
-import React from "react";
 import Tags from "./Tags/Tags";
 import React, { useEffect } from "react";
-import Tags from "./Tags";
 import agent from "../../agent";
 import { connect } from "react-redux";
 import {
@@ -62,10 +60,7 @@ class Home extends React.Component {
             <MainView />
 
             <div className="col-md-3">
-                <Tags
-                  tags={this.props.tags}
-                  onClickTag={this.props.onClickTag}
-                />
+              <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
             </div>
           </div>
         </div>
