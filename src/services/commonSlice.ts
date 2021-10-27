@@ -1,20 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TUser } from "../types";
 import { TThunkAPI } from "./index";
-import { API_ROOT } from "../utils";
+import agent from "../agent";
 
 export const current = createAsyncThunk<TUser, void, TThunkAPI>(
   "common/current",
   async (empty, thunkAPI) => {
-    const res = await fetch(`${API_ROOT}/user`, {
-      method: "GET",
-      headers: {
-        Authorization: `Token ${localStorage.getItem("jwt")}`,
-      } as HeadersInit,
-    });
-
+    const res = await agent.Auth.current();
     const json = await res.json();
-
     return json.user ? json.user : thunkAPI.rejectWithValue("");
   }
 );

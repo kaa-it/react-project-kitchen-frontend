@@ -9,64 +9,106 @@ import {
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
 } from "../../constants/actionTypes";
-import { useAppSelector } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../services";
+import {
+  applyTagFilter,
+  IApplyTagFilterParams,
+  onHomeLoad,
+  onHomeUnload,
+} from "../../services/articleListSlice";
 
 const Promise = global.Promise;
 
-const mapStateToProps = (state) => ({
-  ...state.home,
-  appName: state.common.appName,
-  token: state.common.token,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onClickTag: (tag, pager, payload) =>
-    dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
-  onLoad: (tab, pager, payload) =>
-    dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
-  onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
-});
+// const Promise = global.Promise;
+//
+// const mapStateToProps = (state) => ({
+//   ...state.home,
+//   appName: state.common.appName,
+//   token: state.common.token,
+// });
+//
+// const mapDispatchToProps = (dispatch) => ({
+//   onClickTag: (tag, pager, payload) =>
+//     dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
+//   onLoad: (tab, pager, payload) =>
+//     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
+//   onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
+//});
 
 const Home: React.FC = () => {
   const { appName, token } = useAppSelector((state) => state.common);
+  const { tags } = useAppSelector((state) => state.articleList);
 
-  useEffect(() => {}, []);
-};
+  const dispatch = useAppDispatch();
 
-class Home extends React.Component {
-  componentWillMount() {
-    const tab = this.props.token ? "feed" : "all";
-    const articlesPromise = this.props.token
-      ? agent.Articles.feed
-      : agent.Articles.all;
+  const onClickTag = (params: IApplyTagFilterParams) => {
+    dispatch(applyTagFilter(params));
+  };
 
-    this.props.onLoad(
-      tab,
-      articlesPromise,
-      Promise.all([agent.Tags.getAll(), articlesPromise()])
-    );
-  }
+  useEffect(() => {
+    const tab = token ? "feed" : "all";
+    const pager = token ? agent.Articles.feed : agent.Articles.all;
+    const fetcher = Promise.all([agent.Tags.getAll(), pager()]);
 
-  componentWillUnmount() {
-    this.props.onUnload();
-  }
+    dispatch(onHomeLoad({ tab, pager, fetcher }));
 
-  render() {
-    return (
-      <div className="home-page">
-        <Banner appName={this.props.appName} />
-        <div className="container page">
-          <div className="row">
-            <MainView />
+    return () => {
+      dispatch(onHomeUnload());
+    };
+  });
 
-            <div className="col-md-3">
-              <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
-            </div>
+  return (
+    <div className="home-page">
+      <Banner appName={appName} />
+      <div className="container page">
+        <div className="row">
+          <MainView />
+
+          <div className="col-md-3">
+            <Tags tags={tags} onClickTag={onClickTag} />
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// class Home extends React.Component {
+//   componentWillMount() {
+//     const tab = this.props.token ? "feed" : "all";
+//     const articlesPromise = this.props.token
+//       ? agent.Articles.feed
+//       : agent.Articles.all;
+//
+//     this.props.onLoad(
+//       tab,
+//       articlesPromise,
+//       Promise.all([agent.Tags.getAll(), articlesPromise()])
+//     );
+//   }
+//
+//   componentWillUnmount() {
+//     this.props.onUnload();
+//   }
+//
+//   render() {
+//     return (
+//       <div className="home-page">
+//         <Banner appName={appName} />
+//         <div className="container page">
+//           <div className="row">
+//             <MainView />
+//
+//             <div className="col-md-3">
+//               <Tags tags={tags} onClickTag={this.props.onClickTag} />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default Home;
