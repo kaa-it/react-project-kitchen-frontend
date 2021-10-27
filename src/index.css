@@ -5,8 +5,10 @@
   --text-primary-color: #f2f2f3;
   --text-secondary-color: #8585ad;
   --background: #131316;
-  --background-secondary: #2f2f37;
+  --background-secondary: #1C1C21;
   --common-transition: all 0.3s ease-in;
+  --input-color: #2F2F37;
+  --accent-color: #4C4CFF;
 }
 
 body {

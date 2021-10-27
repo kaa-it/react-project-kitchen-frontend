@@ -1,5 +1,7 @@
 import Banner from "./Banner/Banner";
 import MainView from "./MainView/MainView";
+import React from "react";
+import Tags from "./Tags/Tags";
 import React, { useEffect } from "react";
 import Tags from "./Tags";
 import agent from "../../agent";
@@ -60,14 +62,10 @@ class Home extends React.Component {
             <MainView />
 
             <div className="col-md-3">
-              <div className="sidebar">
-                <p>Popular Tags</p>
-
                 <Tags
                   tags={this.props.tags}
                   onClickTag={this.props.onClickTag}
                 />
-              </div>
             </div>
           </div>
         </div>
