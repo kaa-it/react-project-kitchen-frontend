@@ -8,6 +8,8 @@ const store = configureStore({
     common: commonReducer,
     articleList: articleListReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type TRootState = ReturnType<typeof store.getState>;
