@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Tags.module.css";
-import PropTypes from "prop-types";
 import TagList from "../../common/TagList/TagList";
 import agent from "../../../agent";
 import { IApplyTagFilterParams } from "../../../services/articleListSlice";
