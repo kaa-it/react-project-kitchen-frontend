@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TArticle, TTags } from "../types";
+import { TArticle, TArticles, TTags } from "../types";
 import { TThunkAPI } from "./index";
 
 export type TPager = (
@@ -7,7 +7,7 @@ export type TPager = (
 ) => (url: string, data: any) => Promise<Array<TArticle>>;
 
 interface IArticlesResult {
-  articles: Array<TArticle>;
+  articles: TArticles;
   articlesCount: number;
 }
 
@@ -15,7 +15,7 @@ interface IArticleResult {
   article: TArticle;
 }
 
-type IOnHomeLoadAPIResult = [{ tags: Array<string> }, IArticlesResult];
+type IOnHomeLoadAPIResult = [{ tags: TTags }, IArticlesResult];
 
 interface IOnHomeLoadParams {
   tab: string;

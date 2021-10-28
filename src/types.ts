@@ -28,10 +28,7 @@ export type TArticle = {
   author: TProfile;
 };
 
-export type TFeedResult = {
-  articles: Array<TArticle>;
-  articlesCount: number;
-};
+export type TArticles = Array<TArticle>;
 
 export type TTags = Array<string>;
 
