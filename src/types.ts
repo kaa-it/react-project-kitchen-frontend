@@ -32,6 +32,15 @@ export type TArticles = Array<TArticle>;
 
 export type TTags = Array<string>;
 
+export type TComment = {
+  id: number;
+  body: string;
+  createdAt: Date;
+  author: TProfile;
+};
+
+export type TComments = Array<TComment>;
+
 const userPropTypes = PropTypes.shape({
   email: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
