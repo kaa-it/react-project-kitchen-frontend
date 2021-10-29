@@ -15,18 +15,18 @@ interface IArticleResult {
   article: TArticle;
 }
 
-type IOnHomeLoadAPIResult = [{ tags: TTags }, IArticlesResult];
+type TOnHomeLoadAPIResult = [{ tags: TTags }, IArticlesResult];
 
 interface IOnHomeLoadParams {
   tab: string;
   pager: TPager;
-  fetcher: Promise<IOnHomeLoadAPIResult>;
+  fetcher: Promise<TOnHomeLoadAPIResult>;
 }
 
 interface IOnHomeLoadResult {
   tab: string;
   pager: TPager;
-  data: IOnHomeLoadAPIResult;
+  data: TOnHomeLoadAPIResult;
 }
 
 export const onHomeLoad = createAsyncThunk<
@@ -158,7 +158,7 @@ const initialState: TArticleListSliceState = {
 };
 
 const articleListSlice = createSlice({
-  name: "home",
+  name: "articleList",
   initialState,
   reducers: {
     onHomeUnload: (state) => {

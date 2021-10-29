@@ -1,7 +1,7 @@
 import Header from "./Header/Header";
 import React, { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
-//import Article from "../components/Article";
+import Article from "../components/Article";
 //import Editor from "../components/Editor";
 import Home from "./Home";
 //import Login from "../components/Login";
@@ -47,7 +47,7 @@ const App: React.FC = () => {
             {/*<Route path="/register" component={Register} />*/}
             {/*<Route path="/editor/:slug" component={Editor} />*/}
             {/*<Route path="/editor" component={Editor} />*/}
-            {/*<Route path="/article/:id" component={Article} />*/}
+            <Route path="/article/:id" component={Article} />
             {/*<Route path="/settings" component={Settings} />*/}
             {/*<Route path="/@:username/favorites" component={ProfileFavorites} />*/}
             {/*<Route path="/@:username" component={Profile} />*/}

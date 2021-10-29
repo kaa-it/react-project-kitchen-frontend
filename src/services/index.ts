@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import commonReducer from "./commonSlice";
 import articleListReducer from "./articleListSlice";
+import articleReducer from "./articleSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
   reducer: {
     common: commonReducer,
     articleList: articleListReducer,
+    article: articleReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

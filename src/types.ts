@@ -32,6 +32,19 @@ export type TArticles = Array<TArticle>;
 
 export type TTags = Array<string>;
 
+export type TComment = {
+  id: string;
+  body: string;
+  createdAt: Date;
+  author: TProfile;
+};
+
+export type TComments = Array<TComment>;
+
+export type TErrors = {
+  [key: string]: string | object;
+};
+
 const userPropTypes = PropTypes.shape({
   email: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
@@ -39,10 +52,4 @@ const userPropTypes = PropTypes.shape({
   image: PropTypes.string,
 });
 
-const errorPropTypes = PropTypes.shape({
-  username: PropTypes.string,
-  email: PropTypes.string,
-  message: PropTypes.string,
-});
-
-export { userPropTypes, errorPropTypes };
+export { userPropTypes };
