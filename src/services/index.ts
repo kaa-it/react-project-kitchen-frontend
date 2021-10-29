@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import commonReducer from "./commonSlice";
 import articleListReducer from "./articleListSlice";
 import articleReducer from "./articleSlice";
+import authReducer from "./authSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     common: commonReducer,
     articleList: articleListReducer,
     article: articleReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

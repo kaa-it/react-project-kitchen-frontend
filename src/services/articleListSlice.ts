@@ -161,7 +161,7 @@ const articleListSlice = createSlice({
   name: "articleList",
   initialState,
   reducers: {
-    onHomeUnload: (state) => {
+    clearArticleListSlice: (state) => {
       Object.assign(state, initialState);
     },
   },
@@ -222,6 +222,6 @@ const articleListSlice = createSlice({
   },
 });
 
-export const { onHomeUnload } = articleListSlice.actions;
+export const { clearArticleListSlice } = articleListSlice.actions;
 
 export default articleListSlice.reducer;

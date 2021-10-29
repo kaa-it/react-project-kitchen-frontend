@@ -42,7 +42,7 @@ export const addComment = createAsyncThunk<
   } catch (err) {
     console.log("article/addComment", err);
     // @ts-ignore
-    return thunkAPI.rejectWithValue(err.response.body);
+    return thunkAPI.rejectWithValue(err.response.body.errors);
   }
 });
 
@@ -98,22 +98,22 @@ const articleSlice = createSlice({
           state.comments = action.payload[1].comments;
         }
       )
-      // .addCase(
-      //   addComment.fulfilled,
-      //   (state, action: PayloadAction<TComment>) => {
-      //     let comments: TComments = [];
-      //
-      //     if (state.comments != null) {
-      //       comments.concat(state.comments);
-      //     }
-      //
-      //     state.comments = comments.concat(action.payload);
-      //   }
-      // )
-      // .addCase(addComment.rejected, (state, action) => {
-      //   state.comments = null;
-      //   state.commentErrors = action.payload ? action.payload : null;
-      // })
+      .addCase(
+        addComment.fulfilled,
+        (state, action: PayloadAction<TComment>) => {
+          let comments: TComments = [];
+
+          if (state.comments != null) {
+            comments.concat(state.comments);
+          }
+
+          state.comments = comments.concat(action.payload);
+        }
+      )
+      .addCase(addComment.rejected, (state, action) => {
+        state.comments = null;
+        state.commentErrors = action.payload ? action.payload : null;
+      })
       .addCase(
         deleteComment.fulfilled,
         (state, action: PayloadAction<TDeleteCommentResult>) => {
