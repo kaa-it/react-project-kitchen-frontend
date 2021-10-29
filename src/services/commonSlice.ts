@@ -34,6 +34,23 @@ export const appLoad = createAsyncThunk<
   }
 });
 
+export interface IDeleteArticleParams {
+  fetcher: Promise<{}>;
+}
+
+export const deleteArticle = createAsyncThunk<
+  void,
+  IDeleteArticleParams,
+  TThunkAPI
+>("common/deleteArticle", async (params, thunkAPI) => {
+  try {
+    await params.fetcher;
+  } catch (err) {
+    console.log("common/deleteArticle", err);
+    return thunkAPI.rejectWithValue("");
+  }
+});
+
 type TCommonSliceState = {
   appLoaded: boolean;
   token: string | null;
@@ -55,14 +72,18 @@ const commonSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      appLoad.fulfilled,
-      (state, action: PayloadAction<IAppLoadResult>) => {
-        state.token = action.payload.token;
-        state.appLoaded = true;
-        state.currentUser = action.payload.user;
-      }
-    );
+    builder
+      .addCase(
+        appLoad.fulfilled,
+        (state, action: PayloadAction<IAppLoadResult>) => {
+          state.token = action.payload.token;
+          state.appLoaded = true;
+          state.currentUser = action.payload.user;
+        }
+      )
+      .addCase(deleteArticle.fulfilled, (state) => {
+        state.redirectTo = "/";
+      });
   },
 });
 
