@@ -7,9 +7,9 @@ import Input from "../common/Input/Input";
 import registerStyle from "./Register.module.css";
 import Button from "../common/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../services";
-import { clearAuthSlice, register } from "../../services/authSlice";
+import { unloadAuthPage, register } from "../../services/commonSlice";
 
-type TCredentials = {
+type TRegistrationInfo = {
   username: string;
   email: string;
   password: string;
@@ -17,13 +17,13 @@ type TCredentials = {
 
 const Register: React.FC = () => {
   const [visiblePass, setVisiblePass] = React.useState(true);
-  const [form, setValue] = useState<TCredentials>({
+  const [form, setValue] = useState<TRegistrationInfo>({
     username: "",
     email: "",
     password: "",
   });
 
-  const { errors, inProgress } = useAppSelector((state) => state.auth);
+  const { errors, inProgress } = useAppSelector((state) => state.common);
 
   const dispatch = useAppDispatch();
 
@@ -47,7 +47,7 @@ const Register: React.FC = () => {
 
   React.useEffect(() => {
     return () => {
-      dispatch(clearAuthSlice());
+      dispatch(unloadAuthPage());
     };
   }, []);
 
