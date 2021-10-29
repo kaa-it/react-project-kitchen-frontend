@@ -8,7 +8,7 @@ import {
   applyTagFilter,
   IApplyTagFilterParams,
   onHomeLoad,
-  onHomeUnload,
+  clearArticleListSlice,
 } from "../../services/articleListSlice";
 
 const Promise = global.Promise;
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
     dispatch(onHomeLoad({ tab, pager, fetcher }));
 
     return () => {
-      dispatch(onHomeUnload());
+      dispatch(clearArticleListSlice());
     };
   }, []);
 

@@ -7,7 +7,7 @@ import Home from "./Home";
 //import Login from "../components/Login";
 //import Profile from "./Profile/Profile";
 //import ProfileFavorites from "./Profile/ProfileFavorites";
-//import Register from "../components/Register/Register";
+import Register from "../components/Register/Register";
 //import Settings from "../components/Settings";
 import { useAppDispatch, useAppSelector } from "../services";
 import { appLoad } from "../services/commonSlice";
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             {/*<Route path="/login" component={Login} />*/}
-            {/*<Route path="/register" component={Register} />*/}
+            <Route path="/register" component={Register} />
             {/*<Route path="/editor/:slug" component={Editor} />*/}
             {/*<Route path="/editor" component={Editor} />*/}
             <Route path="/article/:id" component={Article} />
