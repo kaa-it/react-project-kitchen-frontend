@@ -132,7 +132,11 @@ const commonSlice = createSlice({
       state.inProgress = null;
       state.errors = null;
     },
-    logout: () => {
+    logout: (state) => {
+      state.redirectTo = "/";
+      state.token = null;
+      state.currentUser = null;
+
       window.localStorage.setItem('jwt', '');
       agent.setToken(null);
     }
