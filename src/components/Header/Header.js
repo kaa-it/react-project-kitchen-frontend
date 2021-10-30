@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import LoggedOutView from "./LoggedOutView";
 import LoggedInView from "./LoggedInView";
-import { userPropTypes } from "../../types";
-import PropTypes from "prop-types";
+//import { userPropTypes } from "../../types";
+//import PropTypes from "prop-types";
 
 const Header = ({ currentUser, appName }) => {
   return (
@@ -22,9 +22,9 @@ const Header = ({ currentUser, appName }) => {
   );
 };
 
-Header.propTypes = {
-  currentUser: userPropTypes,
-  appName: PropTypes.string.isRequired,
-};
+// Header.propTypes = {
+//   currentUser: userPropTypes,
+//   appName: PropTypes.string.isRequired,
+// };
 
 export default Header;

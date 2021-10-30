@@ -5,8 +5,8 @@ import Article from "../components/Article";
 import Editor from "../components/Editor";
 import Home from "./Home";
 import Login from "../components/Login";
-//import Profile from "./Profile/Profile";
-//import ProfileFavorites from "./Profile/ProfileFavorites";
+import Profile from "./Profile/Profile";
+import ProfileFavorites from "./Profile/ProfileFavorites";
 import Register from "../components/Register/Register";
 //import Settings from "../components/Settings";
 import { useAppDispatch, useAppSelector } from "../services";
@@ -49,8 +49,8 @@ const App: React.FC = () => {
             <Route path="/editor" component={Editor} />
             <Route path="/article/:id" component={Article} />
             {/*<Route path="/settings" component={Settings} />*/}
-            {/*<Route path="/@:username/favorites" component={ProfileFavorites} />*/}
-            {/*<Route path="/@:username" component={Profile} />*/}
+            <Route path="/@:username/favorites" component={ProfileFavorites} />
+            <Route path="/@:username" component={Profile} />
           </Switch>
         </React.Fragment>
       ) : (
