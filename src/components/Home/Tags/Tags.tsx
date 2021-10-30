@@ -1,16 +1,23 @@
 import React from "react";
 import styles from "./Tags.module.css";
-import PropTypes from "prop-types";
 import TagList from "../../common/TagList/TagList";
 import agent from "../../../agent";
+import { IApplyTagFilterParams } from "../../../services/articleListSlice";
 
-const Tags = ({ tags, onClickTag }) => {
-  const handleClickTag = (tag) => {
-    onClickTag(
+interface ITagsProps {
+  tags: Array<string> | null;
+  onClickTag: (params: IApplyTagFilterParams) => void;
+}
+
+const Tags: React.FC<ITagsProps> = ({ tags, onClickTag }) => {
+  const handleClickTag = (tag: string) => {
+    const params: IApplyTagFilterParams = {
       tag,
-      (page) => agent.Articles.byTag(tag, page),
-      agent.Articles.byTag(tag)
-    );
+      pager: (page) => agent.Articles.byTag(tag, page),
+      fetcher: agent.Articles.byTag(tag),
+    };
+
+    onClickTag(params);
   };
 
   return (
@@ -35,9 +42,9 @@ const Tags = ({ tags, onClickTag }) => {
   );
 };
 
-Tags.propTypes = {
-  tags: PropTypes.array,
-  onClickTag: PropTypes.func.isRequired,
-};
+// Tags.propTypes = {
+//   tags: PropTypes.array,
+//   onClickTag: PropTypes.func.isRequired,
+// };
 
 export default Tags;
