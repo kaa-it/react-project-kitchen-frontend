@@ -5,7 +5,7 @@ import NewIcon from "../../icons/new";
 import SettingsIcon from "../../icons/settings";
 import AvatarIcon from "../../icons/avatar";
 import React from "react";
-import { userPropTypes } from "../../types";
+//import { userPropTypes } from "../../types";
 
 const LoggedInView = ({ currentUser }) => {
   if (currentUser) {
@@ -45,8 +45,8 @@ const LoggedInView = ({ currentUser }) => {
   return null;
 };
 
-LoggedInView.propTypes = {
-  currentUser: userPropTypes,
-};
+// LoggedInView.propTypes = {
+//   currentUser: userPropTypes,
+// };
 
 export default LoggedInView;

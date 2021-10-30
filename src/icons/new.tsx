@@ -1,8 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
-import PropTypes from "prop-types";
+import { TIconWithTypeProps } from "../types";
 
-const NewIcon = ({ type }) => {
+const NewIcon: React.FC<TIconWithTypeProps> = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -29,10 +29,6 @@ const NewIcon = ({ type }) => {
       />
     </svg>
   );
-};
-
-NewIcon.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 export default NewIcon;

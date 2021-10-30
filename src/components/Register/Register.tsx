@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ListErrors from "../ListErrors";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import agent from "../../agent";
-import EyeIcon from "../../icons/EyeIcon";
+import EyeIcon from "../../icons/eyeIcon";
 import Input from "../common/Input/Input";
 import registerStyle from "./Register.module.css";
 import Button from "../common/Button/Button";

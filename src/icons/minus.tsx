@@ -1,8 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
-import PropTypes from "prop-types";
+import { TIconWithTypeProps } from "../types";
 
-const MinusIcon = ({ type }) => {
+const MinusIcon: React.FC<TIconWithTypeProps> = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -12,13 +12,15 @@ const MinusIcon = ({ type }) => {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M5 12H19" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path
+        d="M5 12H19"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
-};
-
-MinusIcon.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 export default MinusIcon;

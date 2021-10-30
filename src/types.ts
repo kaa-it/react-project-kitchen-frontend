@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import React from "react";
 
 export type TUser = {
   username: string;
@@ -14,6 +14,8 @@ export type TProfile = {
   image: string;
   following: boolean;
 };
+
+export type TProfileResult = { profile: TProfile };
 
 export type TArticle = {
   slug: string;
@@ -54,11 +56,6 @@ export type TErrors = {
   [key: string]: string | object;
 };
 
-const userPropTypes = PropTypes.shape({
-  email: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  image: PropTypes.string,
-});
-
-export { userPropTypes };
+export type TIconWithTypeProps = {
+  type: "primary" | "secondary";
+} & React.SVGAttributes<SVGElement>;

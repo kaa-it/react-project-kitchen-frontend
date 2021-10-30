@@ -1,8 +1,8 @@
 import React from "react";
 import { getColorByType } from "../utils";
-import PropTypes from "prop-types";
+import { TIconWithTypeProps } from "../types";
 
-const HomeIcon = ({ type }) => {
+const HomeIcon: React.FC<TIconWithTypeProps> = ({ type }) => {
   const color = getColorByType(type);
 
   return (
@@ -28,10 +28,6 @@ const HomeIcon = ({ type }) => {
       />
     </svg>
   );
-};
-
-HomeIcon.propTypes = {
-  type: PropTypes.string.isRequired,
 };
 
 export default HomeIcon;
