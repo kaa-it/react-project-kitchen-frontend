@@ -28,7 +28,7 @@
   align-self: flex-end;
 }
 :local .link {
-  composes: text-link from global;
+  composes: text from global;
   color: var(--accent-color);
   text-decoration-line: none;
 }
