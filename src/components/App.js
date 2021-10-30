@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import Article from '../components/Article';
 import Editor from '../components/Editor';
 import Home from '../components/Home';
-import Login from '../components/Login';
+import Login from '../components/Login/Login';
 import Profile from "./Profile/Profile";
 import ProfileFavorites from "./Profile/ProfileFavorites";
 import Register from '../components/Register/Register';

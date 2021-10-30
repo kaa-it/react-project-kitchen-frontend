@@ -1,0 +1,34 @@
+:local .login {
+  composes: mt-2 from global;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+.form {
+  composes: text from global;
+  display: flex;
+  flex-direction: column;
+  max-width: 540px;
+}
+:local .label {
+  composes: mt-4 from global;
+  color: white;
+}
+:local .h2 {
+  composes: H2 from global;
+  composes: mt-4 from global;
+  color: white;
+}
+:local .buttonSubmit {
+  composes: textheadline from global;
+  composes: mt-4 from global;
+  max-width: 120px;
+  align-self: flex-end;
+}
+:local .link {
+  composes: text-link from global;
+  color: var(--accent-color);
+  text-decoration-line: none;
+}
