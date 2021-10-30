@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TErrors, TUser } from "../types";
+import { TArticle, TArticleResult, TErrors, TUser } from "../types";
 import { TThunkAPI } from "./index";
 import agent from "../agent";
 
@@ -85,6 +85,25 @@ export const login = createAsyncThunk<TUserResult, IAuthParams, TAuthThunkAPI>(
   }
 );
 
+interface ISubmitArticleParams {
+  fetcher: Promise<TArticleResult>;
+}
+
+export const submitArticle = createAsyncThunk<
+  TArticle,
+  ISubmitArticleParams,
+  TAuthThunkAPI
+>("common/submitArticle", async (params, thunkAPI) => {
+  try {
+    const res = await params.fetcher;
+    return res.article;
+  } catch (err) {
+    console.log("common/submitArticle", err);
+    // @ts-ignore
+    return thunkAPI.rejectWithValue(err.response.body.errors);
+  }
+});
+
 type TCommonSliceState = {
   appLoaded: boolean;
   token: string | null;
@@ -156,6 +175,18 @@ const commonSlice = createSlice({
         agent.setToken(action.payload.user.token);
       })
       .addCase(login.rejected, (state, action) => {
+        state.inProgress = false;
+        state.errors = action.payload ? action.payload : null;
+      })
+      .addCase(submitArticle.pending, (state) => {
+        state.inProgress = true;
+      })
+      .addCase(submitArticle.fulfilled, (state, action) => {
+        state.inProgress = false;
+        state.errors = null;
+        state.redirectTo = `/article/${action.payload.slug}`;
+      })
+      .addCase(submitArticle.rejected, (state, action) => {
         state.inProgress = false;
         state.errors = action.payload ? action.payload : null;
       });

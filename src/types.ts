@@ -28,6 +28,15 @@ export type TArticle = {
   author: TProfile;
 };
 
+export type TArticleResult = {
+  article: TArticle;
+};
+
+export type TArticleInput = Omit<
+  TArticle,
+  "favorited" | "favoritesCount" | "author" | "slug" | "createdAt" | "updatedAt"
+> & { slug?: string };
+
 export type TArticles = Array<TArticle>;
 
 export type TTags = Array<string>;
