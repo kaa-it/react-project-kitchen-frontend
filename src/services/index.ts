@@ -3,6 +3,7 @@ import commonReducer from "./commonSlice";
 import articleListReducer from "./articleListSlice";
 import articleReducer from "./articleSlice";
 import editorReducer from "./editorSlice";
+import settingsReducer from "./settingsSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     articleList: articleListReducer,
     article: articleReducer,
     editor: editorReducer,
+    settings: settingsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

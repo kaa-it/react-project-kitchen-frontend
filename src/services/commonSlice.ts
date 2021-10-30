@@ -132,6 +132,10 @@ const commonSlice = createSlice({
       state.inProgress = null;
       state.errors = null;
     },
+    logout: () => {
+      window.localStorage.setItem('jwt', '');
+      agent.setToken(null);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -193,6 +197,6 @@ const commonSlice = createSlice({
   },
 });
 
-export const { unloadAuthPage } = commonSlice.actions;
+export const { unloadAuthPage, logout } = commonSlice.actions;
 
 export default commonSlice.reducer;
