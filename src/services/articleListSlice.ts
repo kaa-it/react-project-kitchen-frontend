@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TArticle, TArticles, TTags } from "../types";
+import { TArticle, TArticles, TProfile, TProfileResult, TTags } from "../types";
 import { TThunkAPI } from "./index";
 
 export type TPager = (
@@ -137,6 +137,50 @@ export const setPage = createAsyncThunk<
   }
 });
 
+type TLoadProfilePageAPIResult = [TProfileResult, IArticlesResult];
+
+interface ILoadProfilePageParams {
+  pager: TPager | null;
+  fetcher: Promise<TLoadProfilePageAPIResult>;
+}
+
+interface ILoadProfilePageResult {
+  pager: TPager | null;
+  data: TLoadProfilePageAPIResult;
+}
+
+export const loadProfilePage = createAsyncThunk<
+  ILoadProfilePageResult,
+  ILoadProfilePageParams,
+  TThunkAPI
+>("articleList/loadProfilePage", async (params, thunkAPI) => {
+  try {
+    const res = await params.fetcher;
+    return { pager: params.pager, data: res };
+  } catch (err) {
+    console.log("articleList/loadProfilePage", err);
+    return thunkAPI.rejectWithValue("");
+  }
+});
+
+interface IToggleFollowUserParams {
+  fetcher: Promise<TProfileResult>;
+}
+
+export const toggleFollowUser = createAsyncThunk<
+  TProfile,
+  IToggleFollowUserParams,
+  TThunkAPI
+>("articleList/toggleFollowUser", async (params, thunkAPI) => {
+  try {
+    const res = await params.fetcher;
+    return res.profile;
+  } catch (err) {
+    console.log("articleList/toggleFollowUser", err);
+    return thunkAPI.rejectWithValue("");
+  }
+});
+
 type TArticleListSliceState = {
   tags: TTags | null;
   pager: TPager | null;
@@ -145,6 +189,7 @@ type TArticleListSliceState = {
   tab: string | null;
   tag: string | null;
   currentPage: number;
+  profile: TProfile | null;
 };
 
 const initialState: TArticleListSliceState = {
@@ -155,6 +200,7 @@ const initialState: TArticleListSliceState = {
   tab: null,
   tag: null,
   currentPage: 0,
+  profile: null,
 };
 
 const articleListSlice = createSlice({
@@ -217,6 +263,22 @@ const articleListSlice = createSlice({
           state.articles = action.payload.data.articles;
           state.articlesCount = action.payload.data.articlesCount;
           state.currentPage = action.payload.page;
+        }
+      )
+      .addCase(
+        loadProfilePage.fulfilled,
+        (state, action: PayloadAction<ILoadProfilePageResult>) => {
+          state.pager = action.payload.pager;
+          state.profile = action.payload.data[0].profile;
+          state.articles = action.payload.data[1].articles;
+          state.articlesCount = action.payload.data[1].articlesCount;
+          state.currentPage = 0;
+        }
+      )
+      .addCase(
+        toggleFollowUser.fulfilled,
+        (state, action: PayloadAction<TProfile>) => {
+          state.profile = action.payload;
         }
       );
   },

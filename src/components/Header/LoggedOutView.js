@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import HomeIcon from "../../icons/home";
 import LoginIcon from "../../icons/login";
 import React from "react";
-import { userPropTypes } from "../../types";
+//import { userPropTypes } from "../../types";
 
 const LoggedOutView = ({ currentUser }) => {
   if (!currentUser) {
@@ -35,8 +35,8 @@ const LoggedOutView = ({ currentUser }) => {
   return null;
 };
 
-LoggedOutView.propTypes = {
-  currentUser: userPropTypes,
-};
+// LoggedOutView.propTypes = {
+//   currentUser: userPropTypes,
+// };
 
 export default LoggedOutView;

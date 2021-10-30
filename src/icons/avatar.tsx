@@ -1,6 +1,6 @@
 import React from "react";
 
-const AvatarIcon = () => {
+const AvatarIcon: React.FC = () => {
   return (
     <svg
       width="24"
