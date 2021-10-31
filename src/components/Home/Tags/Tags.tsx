@@ -3,9 +3,10 @@ import styles from "./Tags.module.css";
 import TagList from "../../common/TagList/TagList";
 import agent from "../../../agent";
 import { IApplyTagFilterParams } from "../../../services/articleListSlice";
+import { TTags } from "../../../types";
 
 interface ITagsProps {
-  tags: Array<string> | null;
+  tags: TTags | null;
   onClickTag: (params: IApplyTagFilterParams) => void;
 }
 

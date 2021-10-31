@@ -14,7 +14,7 @@ import {
 const Promise = global.Promise;
 
 const Home: React.FC = () => {
-  const { appName, token } = useAppSelector((state) => state.common);
+  const { token } = useAppSelector((state) => state.common);
   const { tags } = useAppSelector((state) => state.articleList);
 
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-page">
-      <Banner appName={appName} />
+      <Banner />
       <div className="container page">
         <div className="row">
           <MainView />
