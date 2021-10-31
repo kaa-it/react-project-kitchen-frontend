@@ -5,9 +5,10 @@ import NewIcon from "../../icons/new";
 import SettingsIcon from "../../icons/settings";
 import AvatarIcon from "../../icons/avatar";
 import React from "react";
-//import { userPropTypes } from "../../types";
+import { useAppSelector } from "../../services";
 
-const LoggedInView = ({ currentUser }) => {
+const LoggedInView: React.FC = () => {
+  const { currentUser } = useAppSelector((state) => state.common);
   if (currentUser) {
     return (
       <ul className={styles.nav}>
@@ -44,9 +45,5 @@ const LoggedInView = ({ currentUser }) => {
 
   return null;
 };
-
-// LoggedInView.propTypes = {
-//   currentUser: userPropTypes,
-// };
 
 export default LoggedInView;

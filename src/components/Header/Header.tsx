@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import LoggedOutView from "./LoggedOutView";
 import LoggedInView from "./LoggedInView";
-//import { userPropTypes } from "../../types";
-//import PropTypes from "prop-types";
+import { useAppSelector } from "../../services";
 
-const Header = ({ currentUser, appName }) => {
+const Header: React.FC = () => {
+  const { appName } = useAppSelector((state) => state.common);
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar_content}>
@@ -14,17 +14,12 @@ const Header = ({ currentUser, appName }) => {
           {appName.toLowerCase()}
         </Link>
 
-        <LoggedOutView currentUser={currentUser} />
+        <LoggedOutView />
 
-        <LoggedInView currentUser={currentUser} />
+        <LoggedInView />
       </div>
     </div>
   );
 };
-
-// Header.propTypes = {
-//   currentUser: userPropTypes,
-//   appName: PropTypes.string.isRequired,
-// };
 
 export default Header;

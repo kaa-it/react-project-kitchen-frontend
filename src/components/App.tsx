@@ -14,9 +14,7 @@ import { appLoad } from "../services/commonSlice";
 import agent from "../agent";
 
 const App: React.FC = () => {
-  const { appLoaded, appName, currentUser, redirectTo } = useAppSelector(
-    (state) => state.common
-  );
+  const { appLoaded, redirectTo } = useAppSelector((state) => state.common);
 
   const dispatch = useAppDispatch();
   const history = useHistory();
@@ -40,7 +38,7 @@ const App: React.FC = () => {
     <>
       {appLoaded ? (
         <React.Fragment>
-          <Header appName={appName} currentUser={currentUser} />
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
@@ -54,7 +52,7 @@ const App: React.FC = () => {
           </Switch>
         </React.Fragment>
       ) : (
-        <Header appName={appName} currentUser={currentUser} />
+        <Header />
       )}
     </>
   );

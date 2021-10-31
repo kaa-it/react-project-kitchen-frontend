@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import HomeIcon from "../../icons/home";
 import LoginIcon from "../../icons/login";
 import React from "react";
-//import { userPropTypes } from "../../types";
+import { useAppSelector } from "../../services";
 
-const LoggedOutView = ({ currentUser }) => {
+const LoggedOutView: React.FC = () => {
+  const { currentUser } = useAppSelector((state) => state.common);
   if (!currentUser) {
     return (
       <ul className={styles.nav}>
@@ -34,9 +35,5 @@ const LoggedOutView = ({ currentUser }) => {
   }
   return null;
 };
-
-// LoggedOutView.propTypes = {
-//   currentUser: userPropTypes,
-// };
 
 export default LoggedOutView;
