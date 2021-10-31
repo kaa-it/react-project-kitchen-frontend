@@ -5,13 +5,10 @@ import NewIcon from "../../icons/new";
 import SettingsIcon from "../../icons/settings";
 import AvatarIcon from "../../icons/avatar";
 import React from "react";
-import { TUser } from "../../types";
+import { useAppSelector } from "../../services";
 
-interface ILoggedInViewProps {
-  currentUser: TUser | null;
-}
-
-const LoggedInView: React.FC<ILoggedInViewProps> = ({ currentUser }) => {
+const LoggedInView: React.FC = () => {
+  const { currentUser } = useAppSelector((state) => state.common);
   if (currentUser) {
     return (
       <ul className={styles.nav}>
