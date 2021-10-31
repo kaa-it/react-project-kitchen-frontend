@@ -3,7 +3,8 @@ import agent from "../../agent";
 import { TUser } from "../../types";
 import { useAppDispatch } from "../../services";
 import { addComment } from "../../services/articleSlice";
-
+import styles from "./CommentInput.module.css";
+import Button from "../common/Button/Button";
 interface ICommentInputProps {
   slug: string;
   currentUser: TUser;
@@ -29,25 +30,27 @@ const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
   };
 
   return (
-    <form className="card comment-form" onSubmit={createComment}>
-      <div className="card-block">
+    <form className={styles.commentForm} onSubmit={createComment}>
+      <div className={styles.cardBlock}>
         <textarea
-          className="form-control"
-          placeholder="Напишите комментарий..."
+          className={styles.formControl + " ml-6 mt-6 mr-6"}
+          placeholder="Написать комментарий..."
           value={body}
           onChange={changeBody}
-          rows={3}
+          rows={4}
         />
       </div>
-      <div className="card-footer">
+      <div className={styles.cardFooter} >
+      <div className={styles.cardFooterContent + " ml-6 mb-6 mr-6 mt-6"}>
         <img
           src={currentUser.image}
           className="comment-author-img"
           alt={currentUser.username}
         />
-        <button className="btn btn-sm btn-primary" type="submit">
-          Добавить комментарий
-        </button>
+        <Button type="submit">
+          Отправить комментарий
+        </Button>
+      </div>
       </div>
     </form>
   );
