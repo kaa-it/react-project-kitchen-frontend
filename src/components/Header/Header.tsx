@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import LoggedOutView from "./LoggedOutView";
 import LoggedInView from "./LoggedInView";
-//import { userPropTypes } from "../../types";
-//import PropTypes from "prop-types";
+import { TUser } from "../../types";
 
-const Header = ({ currentUser, appName }) => {
+interface IHeaderProps {
+  currentUser: TUser | null;
+  appName: string;
+}
+
+const Header: React.FC<IHeaderProps> = ({ currentUser, appName }) => {
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar_content}>
@@ -21,10 +25,5 @@ const Header = ({ currentUser, appName }) => {
     </div>
   );
 };
-
-// Header.propTypes = {
-//   currentUser: userPropTypes,
-//   appName: PropTypes.string.isRequired,
-// };
 
 export default Header;
