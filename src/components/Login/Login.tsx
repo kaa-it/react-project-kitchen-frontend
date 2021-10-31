@@ -47,7 +47,7 @@ const Login: React.FC = () => {
 
       <form onSubmit={handleSubmitForm} className={styles.form}>
         <label className={styles.label}>
-          E-mail
+          <span className={styles.labelTitle}>E-mail</span>
           <Input
             type="email"
             placeholder="Email"
@@ -56,7 +56,7 @@ const Login: React.FC = () => {
           />
         </label>
         <label className={styles.label}>
-          Пароль
+          <span className={styles.labelTitle}>Пароль</span>
           <Input
             type="password"
             placeholder="Пароль"
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
         </label>
         <span className={styles.buttonSubmit}>
           <Button type="submit" disabled={inProgress ? inProgress : undefined}>
-            Войти
+            <span className={styles.buttonText}>Войти</span>
           </Button>
         </span>
       </form>

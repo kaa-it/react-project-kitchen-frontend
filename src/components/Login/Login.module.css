@@ -8,27 +8,39 @@
 }
 .form {
   composes: text from global;
+  composes: mt-3 from global;
   display: flex;
   flex-direction: column;
   max-width: 540px;
 }
 :local .label {
-  composes: mt-4 from global;
+  composes: mt-3 from global;
   color: white;
+}
+:local .labelTitle {
+  composes: ml-4 from global;
+  composes: pb-1 from global;
 }
 :local .h2 {
   composes: H2 from global;
-  composes: mt-4 from global;
+  composes: pb-4 from global;
+  composes: pt-4 from global;
+  composes: mt-10 from global;
   color: white;
 }
 :local .buttonSubmit {
-  composes: textheadline from global;
+  composes: text from global;
   composes: mt-4 from global;
-  max-width: 120px;
+  max-width: 180px;
   align-self: flex-end;
+}
+:local .buttonText {
+  composes: pl-5 from global;
+  composes: pr-5 from global;
 }
 :local .link {
   composes: text from global;
+  composes: mt-6 from global;
   color: var(--accent-color);
   text-decoration-line: none;
 }
