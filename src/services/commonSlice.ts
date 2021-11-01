@@ -222,7 +222,7 @@ const commonSlice = createSlice({
       .addCase(saveSettings.fulfilled, (state, action) => {
         state.inProgress = false;
         state.errors = null;
-        state.currentUser = action.payload;
+        state.currentUser = action.payload.user;
       })
       .addCase(saveSettings.rejected, (state, action) => {
         state.inProgress = false;
