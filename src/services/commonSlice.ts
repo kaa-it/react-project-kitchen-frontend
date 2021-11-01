@@ -85,6 +85,20 @@ export const login = createAsyncThunk<TUserResult, IAuthParams, TAuthThunkAPI>(
   }
 );
 
+export const saveSettings = createAsyncThunk<
+  TUserResult,
+  IAuthParams,
+  TAuthThunkAPI
+>("common/saveSettings", async (params, thunkAPI) => {
+  try {
+    return await params.fetcher;
+  } catch (err) {
+    console.log("settings/saveSettings", err);
+    // @ts-ignore
+    return thunkAPI.rejectWithValue(err.response.body.errors);
+  }
+});
+
 interface ISubmitArticleParams {
   fetcher: Promise<TArticleResult>;
 }
@@ -131,6 +145,18 @@ const commonSlice = createSlice({
     unloadAuthPage: (state) => {
       state.inProgress = null;
       state.errors = null;
+    },
+    unloadSettingsPage: (state) => {
+      state.inProgress = null;
+      state.errors = null;
+    },
+    logout: (state) => {
+      state.redirectTo = "/login";
+      state.token = null;
+      state.currentUser = null;
+
+      window.localStorage.removeItem('jwt');
+      agent.setToken(null);
     },
   },
   extraReducers: (builder) => {
@@ -189,10 +215,24 @@ const commonSlice = createSlice({
       .addCase(submitArticle.rejected, (state, action) => {
         state.inProgress = false;
         state.errors = action.payload ? action.payload : null;
+      })
+      .addCase(saveSettings.pending, (state) => {
+        state.inProgress = true;
+      })
+      .addCase(saveSettings.fulfilled, (state, action) => {
+        state.inProgress = false;
+        state.errors = null;
+        state.currentUser = action.payload.user;
+      })
+      .addCase(saveSettings.rejected, (state, action) => {
+        state.inProgress = false;
+        state.errors = action.payload ? action.payload : null;
+        state.currentUser = null;
+        state.redirectTo = null;
       });
   },
 });
 
-export const { unloadAuthPage } = commonSlice.actions;
+export const { unloadAuthPage, logout, unloadSettingsPage } = commonSlice.actions;
 
 export default commonSlice.reducer;
