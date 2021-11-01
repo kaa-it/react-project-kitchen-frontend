@@ -4,19 +4,18 @@ import agent from '../../agent';
 import { TUser } from '../../types';
 import SettingsForm from './SettingsForm';
 import { useAppDispatch, useAppSelector } from '../../services';
-import { saveSettings, unload } from '../../services/settingsSlice';
+import { saveSettings, unloadSettingsPage } from '../../services/commonSlice';
 import { logout } from '../../services/commonSlice';
 
 export type TCurrentUser = Omit<TUser, 'token'> & { password: string }
 
 const Settings: FC = () => {
-  const { currentUser } = useAppSelector(state => state.common);
-  const { inProgress, errors } = useAppSelector(state => state.settings);
+  const { currentUser, inProgress, errors } = useAppSelector(state => state.common);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(unload());
+      dispatch(unloadSettingsPage());
     };
   }, []);
 
@@ -26,7 +25,7 @@ const Settings: FC = () => {
 
   const onSubmitForm = (user: TCurrentUser) => {
     const fetcher = agent.Auth.save(user);
-    dispatch(saveSettings({ fetcher }));
+    dispatch(saveSettings({ fetcher }))
   };
 
   return (
@@ -35,7 +34,7 @@ const Settings: FC = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
 
-            <h1 className="text-xs-center">Your Settings</h1>
+            <h1 className="text-xs-center">Ваши настройки</h1>
 
             <ListErrors errors={errors}></ListErrors>
 
@@ -45,7 +44,7 @@ const Settings: FC = () => {
             <button
               className="btn btn-outline-danger"
               onClick={onClickLogout}>
-              Or click here to logout.
+              Выйти из аккаунта
             </button>
 
           </div>

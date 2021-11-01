@@ -5,7 +5,7 @@ import { TCurrentUser } from '.';
 type TSettingsFormProps = {
   currentUser: TUser | null,
   onSubmitForm: (currentUser: TCurrentUser) => void; 
-  inProgress: boolean;
+  inProgress: boolean | null;
 }
 
 const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inProgress }) => {
@@ -41,7 +41,7 @@ const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inPro
             <input
               className="form-control"
               type="text"
-              placeholder="URL of profile picture"
+              placeholder="URL иззображения профиля"
               value={state.image}
               onChange={updateState('image')} />
           </fieldset>
@@ -59,7 +59,7 @@ const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inPro
             <textarea
               className="form-control form-control-lg"
               rows={8}
-              placeholder="Short bio about you"
+              placeholder="Информация о вас"
               value={state.bio}
               onChange={updateState('bio')}>
             </textarea>
@@ -78,7 +78,7 @@ const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inPro
             <input
               className="form-control form-control-lg"
               type="password"
-              placeholder="New Password"
+              placeholder="Новый пароль"
               value={state.password}
               onChange={updateState('password')} />
           </fieldset>
@@ -86,9 +86,9 @@ const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inPro
           <button
             className="btn btn-lg btn-primary pull-xs-right"
             type="submit"
-            disabled={inProgress}
+            disabled={inProgress || false}
           > 
-            Update Settings
+            Сохранить
           </button>
   
         </fieldset>
