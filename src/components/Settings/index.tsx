@@ -1,10 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import ListErrors from '../ListErrors';
-import agent from '../../agent';
 import { TUser } from '../../types';
 import SettingsForm from './SettingsForm';
 import { useAppDispatch, useAppSelector } from '../../services';
-import { saveSettings, unloadSettingsPage } from '../../services/commonSlice';
+import { unloadSettingsPage } from '../../services/commonSlice';
 import { logout } from '../../services/commonSlice';
 
 export type TCurrentUser = Omit<TUser, 'token'> & { password: string }
@@ -23,11 +22,6 @@ const Settings: FC = () => {
     dispatch(logout());
   };
 
-  const onSubmitForm = (user: TCurrentUser) => {
-    const fetcher = agent.Auth.save(user);
-    dispatch(saveSettings({ fetcher }))
-  };
-
   return (
     <div className="settings-page">
       <div className="container page">
@@ -38,7 +32,7 @@ const Settings: FC = () => {
 
             <ListErrors errors={errors}></ListErrors>
 
-            <SettingsForm currentUser={currentUser} inProgress={inProgress} onSubmitForm={onSubmitForm} />
+            <SettingsForm />
             <hr />
 
             <button

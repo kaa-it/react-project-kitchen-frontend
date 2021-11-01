@@ -1,14 +1,14 @@
 import React, { FC, ChangeEvent, useEffect, useState, FormEvent } from 'react';
-import { TUser } from '../../types';
 import { TCurrentUser } from '.';
+import { useAppSelector } from '../../services';
+import { saveSettings } from '../../services/commonSlice';
+import agent from '../../agent';
+import { useDispatch } from 'react-redux';
 
-type TSettingsFormProps = {
-  currentUser: TUser | null,
-  onSubmitForm: (currentUser: TCurrentUser) => void; 
-  inProgress: boolean | null;
-}
+const SettingsForm: FC = () => {
 
-const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inProgress }) => {
+    const { currentUser, inProgress } = useAppSelector(state => state.common);
+    const dispatch = useDispatch();
 
     const [state, setState] = useState<TCurrentUser>({
       image: '',
@@ -29,9 +29,8 @@ const SettingsForm: FC<TSettingsFormProps> = ({ currentUser, onSubmitForm, inPro
     const submitForm = (ev: FormEvent) => {
       ev.preventDefault();
   
-      const user = { ...state};
-  
-      onSubmitForm(user);
+      const fetcher = agent.Auth.save(state);
+      dispatch(saveSettings({ fetcher }))
     };
   
     return (

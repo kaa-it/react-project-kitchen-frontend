@@ -151,7 +151,7 @@ const commonSlice = createSlice({
       state.errors = null;
     },
     logout: (state) => {
-      state.redirectTo = "/";
+      state.redirectTo = "/login";
       state.token = null;
       state.currentUser = null;
 
@@ -227,6 +227,8 @@ const commonSlice = createSlice({
       .addCase(saveSettings.rejected, (state, action) => {
         state.inProgress = false;
         state.errors = action.payload ? action.payload : null;
+        state.currentUser = null;
+        state.redirectTo = null;
       });
   },
 });
