@@ -9,15 +9,6 @@
   position: relative;
 }
 
-:local .input__icon {
-  display: flex;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
 :local .link {
   composes: text from global;
   color: #4c4cff;
