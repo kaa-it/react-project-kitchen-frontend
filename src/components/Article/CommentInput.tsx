@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../services";
 import { addComment } from "../../services/articleSlice";
 import styles from "./CommentInput.module.css";
 import Button from "../common/Button/Button";
+
 interface ICommentInputProps {
   slug: string;
   currentUser: TUser;
@@ -40,17 +41,15 @@ const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
           rows={4}
         />
       </div>
-      <div className={styles.cardFooter} >
-      <div className={styles.cardFooterContent + " ml-6 mb-6 mr-6 mt-6"}>
-        <img
-          src={currentUser.image}
-          className="comment-author-img"
-          alt={currentUser.username}
-        />
-        <Button type="submit">
-          Отправить комментарий
-        </Button>
-      </div>
+      <div className={styles.cardFooter}>
+        <div className={styles.cardFooterContent + " ml-6 mb-6 mr-6 mt-6"}>
+          <img
+            src={currentUser.image}
+            className="comment-author-img"
+            alt={currentUser.username}
+          />
+          <Button type="submit">Отправить комментарий</Button>
+        </div>
       </div>
     </form>
   );
