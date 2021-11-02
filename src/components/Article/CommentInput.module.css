@@ -1,0 +1,32 @@
+.commentForm {
+    border-radius: 20px;
+}
+
+.cardBlock {
+    background: var(--input-color);
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    display: flex;
+}
+
+:local .formControl {
+    composes: text from global;
+    background: var(--input-color);
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    display: block;
+}
+
+.cardFooter {
+    background: var(--background-secondary);
+    border-radius: 0px 0px 20px 20px;
+    display: flex;
+}
+
+.cardFooterContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
