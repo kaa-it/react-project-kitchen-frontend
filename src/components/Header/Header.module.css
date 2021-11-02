@@ -15,7 +15,8 @@
 }
 
 :local .navbar_brand {
-    composes: headline from global;
+    composes: headline pb-1 from global;
+
     text-shadow: 0 0 16px rgba(51, 51, 255, 0.25),
                  0 0 8px rgba(51, 51, 255, 0.25),
                  0 4px 32px rgba(51, 51, 255, 0.5);
