@@ -3,20 +3,16 @@
 }
 
 .cardBlock {
-    background: #2F2F37;
+    background: var(--input-color);
     border-radius: 20px 20px 0px 0px;
     width: 100%;
     display: flex;
 }
 
-.formControl {
-
-    background: #2F2F37;
-    font-family: JetBrains Mono;
-    font-size: 16px;
-    line-height: 24px;
+:local .formControl {
+    composes: text from global;
+    background: var(--input-color);
     width: 100%;
-    color: #8585AD;
     box-sizing: border-box;
     border: none;
     resize: none;
@@ -24,7 +20,7 @@
 }
 
 .cardFooter {
-    background: #1C1C21;
+    background: var(--background-secondary);
     border-radius: 0px 0px 20px 20px;
     display: flex;
 }
