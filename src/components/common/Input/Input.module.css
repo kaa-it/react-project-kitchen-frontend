@@ -1,3 +1,7 @@
+.inputWrap {
+  position: relative;
+}
+
 :local .input {
   composes: text from global;
   background: #2f2f37;
@@ -15,4 +19,14 @@
 
 :local .input:focus {
   outline: none;
+}
+
+:local .icon {
+  composes: mt-2 from global;
+  position: absolute;
+  left: 500px;
+}
+
+.icon :hover {
+  cursor: pointer;
 }

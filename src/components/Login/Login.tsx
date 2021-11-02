@@ -7,7 +7,7 @@ import { login, unloadAuthPage } from "../../services/commonSlice";
 import Input from "../common/Input/Input";
 import Button from "../common/Button/Button";
 import styles from "./Login.module.css";
-
+import EyeIcon from "../../icons/eyeIcon";
 type TCredentials = {
   email: string;
   password: string;
@@ -17,6 +17,8 @@ const Login: React.FC = () => {
   const [form, setValue] = useState<TCredentials>({ email: "", password: "" });
 
   const { errors, inProgress } = useAppSelector((state) => state.common);
+
+  const [visiblePass, setVisiblePass] = React.useState<boolean>(true);
 
   const dispatch = useAppDispatch();
 
@@ -28,6 +30,10 @@ const Login: React.FC = () => {
     event.preventDefault();
     const fetcher = agent.Auth.login(form.email, form.password);
     dispatch(login({ fetcher }));
+  };
+
+  const handleToggleShowPassword = () => {
+    setVisiblePass(!visiblePass);
   };
 
   React.useEffect(() => {
@@ -59,11 +65,15 @@ const Login: React.FC = () => {
         <label className={styles.label}>
           <span className={styles.labelTitle}>Пароль</span>
           <Input
-            type="password"
+            type={`${visiblePass ? "password" : "text"}`}
             placeholder="Пароль"
             name="password"
             value={form.password}
             onChange={handleChange}
+            icon={
+              <EyeIcon type={`${!visiblePass ? "primary" : "secondary"}`} />
+            }
+            onIconClick={handleToggleShowPassword}
           />
         </label>
         <span className={styles.buttonSubmit}>

@@ -95,13 +95,13 @@ const Register: React.FC = () => {
                       type={`${visiblePass ? "password" : "text"}`}
                       placeholder="Пароль"
                       onChange={handleChange}
+                      icon={
+                        <EyeIcon
+                          type={`${!visiblePass ? "primary" : "secondary"}`}
+                        />
+                      }
+                      onIconClick={handleToggleShowPassword}
                     />
-                    <div className={registerStyle.input__icon}>
-                      <EyeIcon
-                        type={`${!visiblePass ? "primary" : "secondary"}`}
-                        onClick={handleToggleShowPassword}
-                      />
-                    </div>
                   </div>
                 </fieldset>
                 <Button
