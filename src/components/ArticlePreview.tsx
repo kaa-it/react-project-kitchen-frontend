@@ -1,15 +1,16 @@
-import React, { SyntheticEvent } from "react";
-import { Link } from "react-router-dom";
-import agent from "../agent";
-import { TArticle } from "../types";
+import React, { SyntheticEvent } from 'react';
+import { Link } from 'react-router-dom';
+import agent from '../agent';
+import { TArticle } from '../types';
 import {
   IToggleFavoriteParams,
   toggleFavorite,
-} from "../services/articleListSlice";
-import { useAppDispatch } from "../services";
+} from '../services/articleListSlice';
+import { useAppDispatch } from '../services';
+import ArticleInfo from './Article/ArticleInfo';
 
-const FAVORITED_CLASS = "btn btn-sm btn-primary";
-const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
+const FAVORITED_CLASS = 'btn btn-sm btn-primary';
+const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
 interface IArticlePreviewProps {
   article: TArticle;
@@ -38,18 +39,10 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
   return (
     <div className="article-preview">
       <div className="article-meta">
-        <Link to={`/@${article.author.username}`}>
-          <img src={article.author.image} alt={article.author.username} />
-        </Link>
-
-        <div className="info">
-          <Link className="author" to={`/@${article.author.username}`}>
-            {article.author.username}
-          </Link>
-          <span className="date">
-            {new Date(article.createdAt).toDateString()}
-          </span>
-        </div>
+        <ArticleInfo
+          currentUser={article.author}
+          articleDate={article.createdAt}
+        />
 
         <div className="pull-xs-right">
           <button className={favoriteButtonClass} onClick={handleClick}>

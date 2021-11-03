@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import agent from "../../agent";
-import { TUser } from "../../types";
-import { useAppDispatch } from "../../services";
-import { addComment } from "../../services/articleSlice";
-import styles from "./CommentInput.module.css";
-import Button from "../common/Button/Button";
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import agent from '../../agent';
+import { TUser } from '../../types';
+import { useAppDispatch } from '../../services';
+import { addComment } from '../../services/articleSlice';
+import styles from './CommentInput.module.css';
+import Button from '../common/Button/Button';
+import ArticleInfo from './ArticleInfo';
 
 interface ICommentInputProps {
   slug: string;
@@ -14,7 +15,7 @@ interface ICommentInputProps {
 const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
   const dispatch = useAppDispatch();
 
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState('');
 
   const changeBody = (ev: ChangeEvent<HTMLTextAreaElement>) => {
     setBody(ev.target.value);
@@ -25,7 +26,7 @@ const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
 
     const fetcher = agent.Comments.create(slug, { body });
 
-    setBody("");
+    setBody('');
 
     dispatch(addComment({ fetcher }));
   };
@@ -34,7 +35,7 @@ const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
     <form className={styles.commentForm} onSubmit={createComment}>
       <div className={styles.cardBlock}>
         <textarea
-          className={styles.formControl + " ml-6 mt-6 mr-6"}
+          className={styles.formControl + ' ml-6 mt-6 mr-6'}
           placeholder="Написать комментарий..."
           value={body}
           onChange={changeBody}
@@ -42,12 +43,8 @@ const CommentInput: React.FC<ICommentInputProps> = ({ slug, currentUser }) => {
         />
       </div>
       <div className={styles.cardFooter}>
-        <div className={styles.cardFooterContent + " ml-6 mb-6 mr-6 mt-6"}>
-          <img
-            src={currentUser.image}
-            className="comment-author-img"
-            alt={currentUser.username}
-          />
+        <div className={styles.cardFooterContent + ' ml-6 mb-6 mr-6 mt-6'}>
+          <ArticleInfo currentUser={currentUser} articleDate={new Date()} />
           <Button type="submit">Отправить комментарий</Button>
         </div>
       </div>
