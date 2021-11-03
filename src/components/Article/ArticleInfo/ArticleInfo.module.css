@@ -1,0 +1,35 @@
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 38px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
+
+:local .author {
+    composes: text from global;
+    color: var(--text-primary-color);
+    text-decoration: none;
+}
+
+.author:hover,
+.author:focus {
+    text-decoration: underline;
+    color: var(--text-primary-color);
+}
+
+:local .date {
+    composes: caption from global;
+}

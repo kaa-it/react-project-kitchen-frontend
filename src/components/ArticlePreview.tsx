@@ -7,6 +7,8 @@ import {
   toggleFavorite,
 } from "../services/articleListSlice";
 import { useAppDispatch } from "../services";
+import ArticleInfo from "./Article/ArticleInfo/ArticleInfo";
+import styles from "./ArticlePreview.module.css";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
@@ -37,19 +39,11 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
 
   return (
     <div className="article-preview">
-      <div className="article-meta">
-        <Link to={`/@${article.author.username}`}>
-          <img src={article.author.image} alt={article.author.username} />
-        </Link>
-
-        <div className="info">
-          <Link className="author" to={`/@${article.author.username}`}>
-            {article.author.username}
-          </Link>
-          <span className="date">
-            {new Date(article.createdAt).toDateString()}
-          </span>
-        </div>
+      <div className={`${styles.articleMeta} mb-4`}>
+        <ArticleInfo
+          currentUser={article.author}
+          articleDate={article.createdAt}
+        />
 
         <div className="pull-xs-right">
           <button className={favoriteButtonClass} onClick={handleClick}>
