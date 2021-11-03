@@ -22,7 +22,6 @@
 }
 
 :local .icon {
-  composes: mt-2 from global;
   position: absolute;
   left: 500px;
 }
