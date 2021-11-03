@@ -1,0 +1,22 @@
+.card {
+    position: relative;
+    display: block;
+    background: var(--background-secondary);
+    border-radius: 20px;
+}
+
+.cardBlock {
+    background: var(--background-secondary);
+    border-radius: 20px 20px 0px 0px;
+    min-height: 120px;
+    display: flex;
+}
+
+.cardFooter {
+    background: var(--background-secondary);
+    border-radius: 0px 0px 20px 20px;
+}
+
+:local .cardText {
+    composes: text from global;
+}

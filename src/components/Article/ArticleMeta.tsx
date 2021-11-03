@@ -16,7 +16,6 @@ const ArticleMeta: React.FC<IArticleMetaProps> = ({ article, canModify }) => {
         currentUser={article.author}
         articleDate={article.createdAt}
       />
-
       <ArticleActions canModify={canModify} article={article} />
     </div>
   );
