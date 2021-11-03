@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../services';
 import { addComment } from '../../services/articleSlice';
 import styles from './CommentInput.module.css';
 import Button from '../common/Button/Button';
-import ArticleInfo from './ArticleInfo';
+import ArticleInfo from './ArticleInfo/ArticleInfo';
 
 interface ICommentInputProps {
   slug: string;

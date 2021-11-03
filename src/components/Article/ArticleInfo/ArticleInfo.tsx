@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TProfile, TUser } from '../../types';
+import { TProfile, TUser } from '../../../types';
 import styles from './ArticleInfo.module.css';
 
 interface IArticleInfoProps {

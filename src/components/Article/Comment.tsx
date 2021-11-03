@@ -2,7 +2,7 @@ import DeleteButton from './DeleteButton';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { TComment, TUser } from '../../types';
-import ArticleInfo from './ArticleInfo';
+import ArticleInfo from './ArticleInfo/ArticleInfo';
 import styles from './Comment.module.css';
 
 interface ICommentProps {

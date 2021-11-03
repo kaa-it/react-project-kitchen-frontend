@@ -2,7 +2,8 @@ import ArticleActions from './ArticleActions';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { TArticle } from '../../types';
-import ArticleInfo from './ArticleInfo';
+import ArticleInfo from './ArticleInfo/ArticleInfo';
+import styles from './ArticleMeta.module.css';
 
 interface IArticleMetaProps {
   article: TArticle;
@@ -11,7 +12,7 @@ interface IArticleMetaProps {
 
 const ArticleMeta: React.FC<IArticleMetaProps> = ({ article, canModify }) => {
   return (
-    <div className="article-meta">
+    <div className={styles.articleMeta + ' mt-8 mb-8'}>
       <ArticleInfo
         currentUser={article.author}
         articleDate={article.createdAt}
