@@ -13,6 +13,7 @@ const Input: React.FC<IInputProps> = ({
   placeholder,
   icon,
   onIconClick,
+  onBlur
 }) => {
   return (
     <span className={inputStyle.inputWrap}>
@@ -22,6 +23,7 @@ const Input: React.FC<IInputProps> = ({
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        onBlur={onBlur}
       />
       {icon && (
         <span className={inputStyle.icon} onClick={onIconClick}>
