@@ -69,12 +69,12 @@ const SettingsForm: FC = () => {
         </fieldset>
 
         <fieldset className={styles.formGroup + ' mt-3'}>
-          <span className={styles.placeholder + ' pl-4'}>Информация о вас</span>
+          <span className={styles.placeholder + ' pl-4 mb-1'}>Информация о вас</span>
           <Textarea
             rows={8}
             value={state.bio}
             onChange={updateState('bio')}
-            className={styles.textarea}
+            className={styles.bio}
             resize={'none'}
           />
         </fieldset>

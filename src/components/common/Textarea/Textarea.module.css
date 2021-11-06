@@ -9,6 +9,7 @@
   width: 540px;
   padding: 8px 16px;
   border: none;
+  margin-top: 4px;
   color: var(--text-primary-color);
 }
 
