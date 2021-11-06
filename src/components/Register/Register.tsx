@@ -8,6 +8,7 @@ import registerStyle from "./Register.module.css";
 import Button from "../common/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../services";
 import { unloadAuthPage, register } from "../../services/commonSlice";
+import EyeCloseIcon from "../../icons/eyeCloseIcon";
 
 type TRegistrationInfo = {
   username: string;
@@ -96,11 +97,12 @@ const Register: React.FC = () => {
                       placeholder="Пароль"
                       onChange={handleChange}
                       icon={
-                        <EyeIcon
-                          type={`${!visiblePass ? "primary" : "secondary"}`}
-                        />
+                        !visiblePass ? (
+                            <EyeCloseIcon type="primary" onClick={handleToggleShowPassword} />
+                        ) : (
+                            <EyeIcon type="primary" onClick={handleToggleShowPassword} />
+                        )
                       }
-                      onIconClick={handleToggleShowPassword}
                     />
                   </div>
                 </fieldset>
