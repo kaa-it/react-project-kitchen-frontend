@@ -1,13 +1,13 @@
-import ArticleList from "../../ArticleList";
-import React from "react";
-import agent from "../../../agent";
-import styles from "./MainView.module.css";
-import Tab from "../../common/Tab/Tab";
+import ArticleList from '../../ArticleList';
+import React from 'react';
+import agent from '../../../agent';
+import styles from './MainView.module.css';
+import Tab from '../../common/Tab/Tab';
 import {
   changeTab,
   IChangeTabParams,
-} from "../../../services/articleListSlice";
-import { useAppDispatch, useAppSelector } from "../../../services";
+} from '../../../services/articleListSlice';
+import { useAppDispatch, useAppSelector } from '../../../services';
 
 const MainView: React.FC = () => {
   const { tab, tag, pager, articles, articlesCount, currentPage } =
@@ -23,17 +23,17 @@ const MainView: React.FC = () => {
 
   const switchTab = (name: string) => {
     switch (name) {
-      case "all": {
+      case 'all': {
         onTabClick({
-          tab: "all",
+          tab: 'all',
           pager: agent.Articles.all,
           fetcher: agent.Articles.all(),
         });
         break;
       }
-      case "feed": {
+      case 'feed': {
         onTabClick({
-          tab: "feed",
+          tab: 'feed',
           pager: agent.Articles.feed,
           fetcher: agent.Articles.feed(),
         });
@@ -46,12 +46,12 @@ const MainView: React.FC = () => {
     <div className="col-md-9">
       <div className={styles.feed}>
         {token && (
-          <Tab value="feed" active={tab === "feed"} onClick={switchTab}>
+          <Tab value="feed" active={tab === 'feed'} onClick={switchTab}>
             Ваша лента
           </Tab>
         )}
 
-        <Tab value="all" active={tab === "all"} onClick={switchTab}>
+        <Tab value="all" active={tab === 'all'} onClick={switchTab}>
           Лента
         </Tab>
 
@@ -67,6 +67,7 @@ const MainView: React.FC = () => {
         articles={articles}
         articlesCount={articlesCount}
         currentPage={currentPage}
+        tag={tag}
       />
     </div>
   );

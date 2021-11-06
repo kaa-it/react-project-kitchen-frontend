@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./Tags.module.css";
-import TagList from "../../common/TagList/TagList";
-import agent from "../../../agent";
-import { IApplyTagFilterParams } from "../../../services/articleListSlice";
-import { TTags } from "../../../types";
+import React from 'react';
+import styles from './Tags.module.css';
+import TagList from '../../common/TagList/TagList';
+import agent from '../../../agent';
+import { IApplyTagFilterParams } from '../../../services/articleListSlice';
+import { TTags } from '../../../types';
 
 interface ITagsProps {
   tags: TTags | null;
@@ -29,7 +29,7 @@ const Tags: React.FC<ITagsProps> = ({ tags, onClickTag }) => {
             <p className={styles.title}>Список тегов пуст</p>
           ) : (
             <>
-              <p className={styles.title}>Популярные теги</p>
+              <p className={styles.title + ' mb-4'}>Популярные теги</p>
               <TagList tags={tags} onClickTag={handleClickTag} />
             </>
           )}

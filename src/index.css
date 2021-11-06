@@ -10,6 +10,7 @@
   --common-transition: all 0.3s ease-in;
   --input-color: #2F2F37;
   --accent-color: #4C4CFF;
+  --text-alert-color: #F20D33;
 }
 
 body {

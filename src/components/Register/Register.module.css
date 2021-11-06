@@ -1,7 +1,7 @@
 :local .input__title {
   composes: text from global;
   color: var(--text-primary-color);
-  margin-bottom: 4px;
+  margin-bottom: 0;
   padding-left: 16px;
 }
 

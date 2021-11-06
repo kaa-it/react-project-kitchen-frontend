@@ -19,8 +19,8 @@
 }
 :local .labelTitle {
   composes: ml-4 from global;
-  composes: pb-1 from global;
 }
+
 :local .h2 {
   composes: H2 from global;
   composes: pb-4 from global;
