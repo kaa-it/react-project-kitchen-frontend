@@ -1,5 +1,7 @@
 .inputWrap {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 :local .input {
@@ -23,7 +25,13 @@
 
 :local .icon {
   position: absolute;
-  left: 500px;
+  display: flex;
+  right: 18px;
+  align-items: center;
+}
+
+:local .input__error {
+  border: 2px solid #F20D33;
 }
 
 .icon :hover {

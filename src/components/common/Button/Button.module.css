@@ -8,3 +8,8 @@
   color: #f2f2f3;
   float: right;
 }
+
+:local .button:disabled {
+  background: #3A3A55;
+  color: #8585AD;
+}

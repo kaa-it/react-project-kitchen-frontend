@@ -1,8 +1,12 @@
-const getColorByType = (type: "primary" | "secondary") => {
+import {PRIMARY_COLOR, SECONDARY_COLOR, WARNING_COLOR} from "./constants/constants";
+
+const getColorByType = (type: "primary" | "secondary" | "warning") => {
   if (type === "primary") {
-    return "#F2F2F3";
+    return PRIMARY_COLOR;
+  } else if (type === "secondary") {
+    return SECONDARY_COLOR;
   } else {
-    return "#8585AD";
+    return WARNING_COLOR;
   }
 };
 

@@ -9,6 +9,7 @@ import Button from "../common/Button/Button";
 import {useAppDispatch, useAppSelector} from "../../services";
 import {unloadAuthPage, register} from "../../services/commonSlice";
 import {useInput} from "../../hooks/useInput";
+import WarningIcon from "../../icons/warning";
 
 const Register: React.FC = () => {
   const [visiblePass, setVisiblePass] = React.useState<boolean>(true);
@@ -78,8 +79,10 @@ const Register: React.FC = () => {
                     onChange={userNameInput.onChange}
                     onBlur={userNameInput.onBlur}
                     value={userNameInput.value}
+                    icon={!userNameInput.isValid && userNameInput.dirty ? <WarningIcon type={"warning"} /> : undefined}
+                    error={!userNameInput.isValid && userNameInput.dirty}
                   />
-                  {userNameInput.dirty && <span style={{color: "red"}}>{userNameInput.inputValidation.inputError}</span>}
+                  {userNameInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{userNameInput.inputValidation.inputError}</span>}
                 </fieldset>
 
                 <fieldset className="form-group mb-3">
@@ -91,8 +94,10 @@ const Register: React.FC = () => {
                     onChange={emailInput.onChange}
                     onBlur={emailInput.onBlur}
                     value={emailInput.value}
+                    icon={!emailInput.isValid && emailInput.dirty ? <WarningIcon type={"warning"} /> : undefined}
+                    error={!emailInput.isValid && emailInput.dirty}
                   />
-                  {emailInput.dirty && <span style={{color: "red"}}>{emailInput.inputValidation.inputError}</span>}
+                  {emailInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{emailInput.inputValidation.inputError}</span>}
 
                 </fieldset>
 
@@ -105,15 +110,14 @@ const Register: React.FC = () => {
                       placeholder="Пароль"
                       onChange={passwordInput.onChange}
                       onBlur={passwordInput.onBlur}
-                      icon={
-                        <EyeIcon
-                          type={`${!visiblePass ? "primary" : "secondary"}`}
-                        />
-                      }
+                      icon={!passwordInput.isValid && passwordInput.dirty ? <WarningIcon type={"warning"} /> : <EyeIcon
+                        type={`${!visiblePass ? "primary" : "secondary"}`}
+                      />}
+                      error={!passwordInput.isValid && passwordInput.dirty}
                       onIconClick={handleToggleShowPassword}
                       value={passwordInput.value}
                     />
-                    {passwordInput.dirty && <span style={{color: "red"}}>{passwordInput.inputValidation.inputError}</span>}
+                    {passwordInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{passwordInput.inputValidation.inputError}</span>}
                   </div>
                 </fieldset>
                 <Button
