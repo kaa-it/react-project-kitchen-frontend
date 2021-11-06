@@ -1,0 +1,20 @@
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+:local .delete {
+    background: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    color: var(--text-alert-color);
+}
+
+.text {
+    margin: 0 0 0 12px;
+}

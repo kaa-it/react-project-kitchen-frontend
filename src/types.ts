@@ -57,5 +57,5 @@ export type TErrors = {
 };
 
 export type TIconWithTypeProps = {
-  type: "primary" | "secondary";
+  type: "primary" | "secondary" | "alert";
 } & React.SVGAttributes<SVGElement>;
