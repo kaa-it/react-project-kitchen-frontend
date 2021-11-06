@@ -24,6 +24,7 @@
 :local .icon {
   position: absolute;
   left: 500px;
+  margin-top: 8px;
 }
 
 .icon :hover {
