@@ -1,0 +1,30 @@
+.textareaWrap {
+  position: relative;
+}
+
+:local .textarea {
+  composes: text from global;
+  background: #2f2f37;
+  border-radius: 20px;
+  width: 540px;
+  padding: 8px 16px;
+  border: none;
+  color: var(--text-primary-color);
+}
+
+:local .textarea::placeholder {
+  color: var(--text-secondary-color);
+}
+
+:local .textarea:focus {
+  outline: none;
+}
+
+:local .icon {
+  position: absolute;
+  left: 500px;
+}
+
+.icon :hover {
+  cursor: pointer;
+}

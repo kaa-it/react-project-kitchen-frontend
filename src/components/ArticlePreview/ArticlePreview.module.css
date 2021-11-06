@@ -1,0 +1,32 @@
+.articleMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.articlePreview {
+    border-top: 1px solid var(--input-color);
+    border-bottom: 1px solid var(--input-color);
+}
+
+:local .title {
+    composes: headline from global;
+}
+
+:local .text {
+    composes: text from global;
+}
+
+:local .more {
+    composes: text-link from global;
+    color: var(--accent-color);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}

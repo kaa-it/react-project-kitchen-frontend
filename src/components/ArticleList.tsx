@@ -1,8 +1,8 @@
-import ArticlePreview from "./ArticlePreview";
-import ListPagination from "./ListPagination";
-import React from "react";
-import { TArticle } from "../types";
-import { TPager } from "../services/articleListSlice";
+import ArticlePreview from './ArticlePreview/ArticlePreview';
+import ListPagination from './ListPagination';
+import React from 'react';
+import { TArticle } from '../types';
+import { TPager } from '../services/articleListSlice';
 
 interface IArticleListProps {
   pager: TPager | null;

@@ -1,22 +1,31 @@
-import React, { FC, ChangeEvent, useEffect, useState, FormEvent } from "react";
-import { TCurrentUser } from ".";
-import { useAppSelector } from "../../services";
-import { saveSettings } from "../../services/commonSlice";
-import agent from "../../agent";
-import { useDispatch } from "react-redux";
+import React, { FC, ChangeEvent, useEffect, useState, FormEvent } from 'react';
+import { TCurrentUser } from '.';
+import { useAppSelector } from '../../services';
+import { saveSettings } from '../../services/commonSlice';
+import agent from '../../agent';
+import { useDispatch } from 'react-redux';
+import styles from './SettingsForm.module.css';
+import Input from '../common/Input/Input';
+import FileIcon from '../../icons/file';
+import Button from '../common/Button/Button';
+import Textarea from '../common/Textarea/Textarea';
+import EyeIcon from '../../icons/eyeIcon';
+import EyeCloseIcon from '../../icons/eyeCloseIcon';
 
 const SettingsForm: FC = () => {
   const { currentUser, inProgress } = useAppSelector((state) => state.common);
   const dispatch = useDispatch();
-
+  const [openPass, setOpenPass] = useState(false);
   const [state, setState] = useState<TCurrentUser>({
-    image: "",
-    username: "",
-    bio: "",
-    email: "",
-    password: "",
+    image: '',
+    username: '',
+    bio: '',
+    email: '',
+    password: '',
   });
-
+  const EyeClick = () => {
+    setOpenPass(!openPass);
+  };
   const updateState =
     (field: string) =>
     (ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -38,63 +47,66 @@ const SettingsForm: FC = () => {
   return (
     <form onSubmit={submitForm}>
       <fieldset>
-        <fieldset className="form-group">
-          <input
-            className="form-control"
-            type="text"
-            placeholder="URL иззображения профиля"
+        <fieldset className={styles.formGroup + ' mt-10'}>
+          <span className={styles.placeholder + ' pl-4'}>
+            Изображение профиля
+          </span>
+          <Input
+            type="URL"
             value={state.image}
-            onChange={updateState("image")}
+            onChange={updateState('image')}
+            icon={<FileIcon type="primary" />}
           />
         </fieldset>
 
-        <fieldset className="form-group">
-          <input
-            className="form-control form-control-lg"
+        <fieldset className={styles.formGroup + ' mt-3'}>
+          <span className={styles.placeholder + ' pl-4'}>Имя пользователя</span>
+          <Input
             type="text"
-            placeholder="Username"
             value={state.username}
-            onChange={updateState("username")}
+            onChange={updateState('username')}
           />
         </fieldset>
 
-        <fieldset className="form-group">
-          <textarea
-            className="form-control form-control-lg"
+        <fieldset className={styles.formGroup + ' mt-3'}>
+          <span className={styles.placeholder + ' pl-4'}>Информация о вас</span>
+          <Textarea
             rows={8}
-            placeholder="Информация о вас"
             value={state.bio}
-            onChange={updateState("bio")}
+            onChange={updateState('bio')}
+            className={styles.textarea}
+            resize={'none'}
           />
         </fieldset>
 
-        <fieldset className="form-group">
-          <input
-            className="form-control form-control-lg"
+        <fieldset className={styles.formGroup + ' mt-3'}>
+          <span className={styles.placeholder + ' pl-4'}>E-mail</span>
+          <Input
             type="email"
-            placeholder="Email"
             value={state.email}
-            onChange={updateState("email")}
+            onChange={updateState('email')}
           />
         </fieldset>
 
-        <fieldset className="form-group">
-          <input
-            className="form-control form-control-lg"
-            type="password"
-            placeholder="Новый пароль"
+        <fieldset className={styles.formGroup + ' mt-3 mb-10'}>
+          <span className={styles.placeholder + ' pl-4'}>Новый пароль</span>
+          <Input
+            type={openPass ? 'text' : 'password'}
             value={state.password}
-            onChange={updateState("password")}
+            onChange={updateState('password')}
+            icon={
+              openPass ? (
+                <EyeCloseIcon type="primary" onClick={EyeClick} />
+              ) : (
+                <EyeIcon type="primary" onClick={EyeClick} />
+              )
+            }
           />
         </fieldset>
 
-        <button
-          className="btn btn-lg btn-primary pull-xs-right"
-          type="submit"
-          disabled={inProgress || false}
-        >
+        <Button type="submit" disabled={inProgress || false}>
           Сохранить
-        </button>
+        </Button>
       </fieldset>
     </form>
   );
