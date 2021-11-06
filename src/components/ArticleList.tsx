@@ -9,6 +9,7 @@ interface IArticleListProps {
   articles: Array<TArticle> | null;
   articlesCount: number;
   currentPage: number;
+  tag?: string | null;
 }
 
 const ArticleList: React.FC<IArticleListProps> = ({
@@ -16,6 +17,7 @@ const ArticleList: React.FC<IArticleListProps> = ({
   articles,
   articlesCount,
   currentPage,
+  tag = null,
 }) => {
   if (!articles) {
     return <div className="article-preview">Загрузка...</div>;
@@ -28,7 +30,9 @@ const ArticleList: React.FC<IArticleListProps> = ({
   return (
     <div>
       {articles.map((article) => {
-        return <ArticlePreview article={article} key={article.slug} />;
+        return (
+          <ArticlePreview article={article} key={article.slug} tag={tag} />
+        );
       })}
 
       <ListPagination

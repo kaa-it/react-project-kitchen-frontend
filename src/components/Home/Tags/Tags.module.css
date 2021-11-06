@@ -11,5 +11,4 @@
 :local .title {
     composes: text from global;
     color: var(--text-primary-color);
-    margin: 0;
 }

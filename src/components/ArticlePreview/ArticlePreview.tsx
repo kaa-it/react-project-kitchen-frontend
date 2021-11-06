@@ -16,9 +16,10 @@ const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
 interface IArticlePreviewProps {
   article: TArticle;
+  tag: string | null;
 }
 
-const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
+const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article, tag }) => {
   const dispatch = useAppDispatch();
 
   const favoriteButtonClass = article.favorited
@@ -53,14 +54,14 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
         </div>
       </div>
 
-      <Link to={`/article/${article.slug}`}>
-        <h1 className={styles.title}>{article.title}</h1>
-        <p className={styles.text}>{article.description}</p>
-        <div className={styles.footer}>
+      <h1 className={styles.title}>{article.title}</h1>
+      <p className={styles.text}>{article.description}</p>
+      <div className={styles.footer}>
+        <Link to={`/article/${article.slug}`}>
           <span className={styles.more}>Read more...</span>
-          <TagList tags={article.tagList} onClickTag={undefined} />
-        </div>
-      </Link>
+        </Link>
+        <TagList tags={article.tagList} onClickTag={undefined} tagActiv={tag} />
+      </div>
     </div>
   );
 };
