@@ -1,23 +1,25 @@
-import React, { SyntheticEvent } from "react";
-import { Link } from "react-router-dom";
-import agent from "../agent";
-import { TArticle } from "../types";
+import React, { SyntheticEvent } from 'react';
+import { Link } from 'react-router-dom';
+import agent from '../../agent';
+import { TArticle } from '../../types';
 import {
   IToggleFavoriteParams,
   toggleFavorite,
-} from "../services/articleListSlice";
-import { useAppDispatch } from "../services";
-import ArticleInfo from "./Article/ArticleInfo/ArticleInfo";
-import styles from "./ArticlePreview.module.css";
+} from '../../services/articleListSlice';
+import { useAppDispatch } from '../../services';
+import ArticleInfo from '../Article/ArticleInfo/ArticleInfo';
+import styles from './ArticlePreview.module.css';
+import TagList from '../common/TagList/TagList';
 
-const FAVORITED_CLASS = "btn btn-sm btn-primary";
-const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
+const FAVORITED_CLASS = 'btn btn-sm btn-primary';
+const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
 interface IArticlePreviewProps {
   article: TArticle;
+  tag: string | null;
 }
 
-const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
+const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article, tag }) => {
   const dispatch = useAppDispatch();
 
   const favoriteButtonClass = article.favorited
@@ -38,7 +40,7 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
   };
 
   return (
-    <div className="article-preview">
+    <div className={styles.articlePreview + ' pt-8 pb-8'}>
       <div className={`${styles.articleMeta} mb-4`}>
         <ArticleInfo
           currentUser={article.author}
@@ -52,20 +54,14 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article }) => {
         </div>
       </div>
 
-      <Link to={`/article/${article.slug}`} className="preview-link">
-        <h1>{article.title}</h1>
-        <p>{article.description}</p>
-        <span>Read more...</span>
-        <ul className="tag-list">
-          {article.tagList.map((tag) => {
-            return (
-              <li className="tag-default tag-pill tag-outline" key={tag}>
-                {tag}
-              </li>
-            );
-          })}
-        </ul>
-      </Link>
+      <h1 className={styles.title}>{article.title}</h1>
+      <p className={styles.text}>{article.description}</p>
+      <div className={styles.footer}>
+        <Link to={`/article/${article.slug}`} className={styles.more}>
+          <span>Read more...</span>
+        </Link>
+        <TagList tags={article.tagList} onClickTag={undefined} tagActiv={tag} />
+      </div>
     </div>
   );
 };

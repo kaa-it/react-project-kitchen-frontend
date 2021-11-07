@@ -1,0 +1,13 @@
+.formGroup {
+    border: 0;
+}
+
+:local .placeholder {
+    composes: text from global;
+    text-align: center !important;
+    color: var(--text-primary-color);
+}
+
+.textarea {
+    resize: none;
+}

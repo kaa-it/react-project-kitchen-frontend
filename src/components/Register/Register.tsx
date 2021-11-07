@@ -10,6 +10,7 @@ import {useAppDispatch, useAppSelector} from "../../services";
 import {unloadAuthPage, register} from "../../services/commonSlice";
 import {useInput} from "../../hooks/useInput";
 import WarningIcon from "../../icons/warning";
+import EyeCloseIcon from "../../icons/eyeCloseIcon";        
 
 const Register: React.FC = () => {
   const [visiblePass, setVisiblePass] = React.useState<boolean>(true);
@@ -28,11 +29,7 @@ const Register: React.FC = () => {
   }, [userNameInput.isValid, passwordInput.isValid, emailInput.isValid, inProgress])
 
   const dispatch = useAppDispatch();
-
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setValue({ ...form, [e.target.name]: e.target.value });
-  // };
-
+  
   const handleToggleShowPassword = () => {
     setVisiblePass(!visiblePass);
   };
@@ -53,6 +50,14 @@ const Register: React.FC = () => {
       dispatch(unloadAuthPage());
     };
   }, []);
+    
+  let icon: JSX.Element = <EyeCloseIcon type="primary" onClick={handleToggleShowPassword} />;
+
+  if (!passwordInput.isValid && passwordInput.dirty) {
+    icon = <WarningIcon type={"warning"} />;
+  } else if (visiblePass) {
+    icon = <EyeIcon type="primary" onClick={handleToggleShowPassword} />;
+  }  
 
   return (
     <div className="auth-page">
@@ -110,9 +115,7 @@ const Register: React.FC = () => {
                       placeholder="Пароль"
                       onChange={passwordInput.onChange}
                       onBlur={passwordInput.onBlur}
-                      icon={!passwordInput.isValid && passwordInput.dirty ? <WarningIcon type={"warning"} /> : <EyeIcon
-                        type={`${!visiblePass ? "primary" : "secondary"}`}
-                      />}
+                      icon={icon}
                       error={!passwordInput.isValid && passwordInput.dirty}
                       onIconClick={handleToggleShowPassword}
                       value={passwordInput.value}

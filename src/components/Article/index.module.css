@@ -1,0 +1,19 @@
+.banner {
+    display: flex;
+    box-shadow: inset 0px -1px 0px #2F2F37;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1140px;
+}
+
+:local .title {
+    composes: H2 from global;
+    color: var(--text-primary-color);
+    margin-bottom: 16px;
+}

@@ -1,38 +1,29 @@
-.inputWrap {
+.textareaWrap {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
-:local .input {
+:local .textarea {
   composes: text from global;
-  position: relative;
   background: #2f2f37;
   border-radius: 20px;
   width: 540px;
-  height: 40px;
   padding: 8px 16px;
   border: none;
   margin-top: 4px;
   color: var(--text-primary-color);
 }
 
-:local .input::placeholder {
+:local .textarea::placeholder {
   color: var(--text-secondary-color);
 }
 
-:local .input:focus {
+:local .textarea:focus {
   outline: none;
 }
 
 :local .icon {
   position: absolute;
-  right: 12px;
-  top: -1px;
-}
-
-:local .input__error {
-  border: 2px solid #F20D33;
+  left: 500px;
 }
 
 .icon :hover {

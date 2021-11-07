@@ -8,6 +8,7 @@ import Input from "../common/Input/Input";
 import Button from "../common/Button/Button";
 import styles from "./Login.module.css";
 import EyeIcon from "../../icons/eyeIcon";
+import EyeCloseIcon from "../../icons/eyeCloseIcon";
 type TCredentials = {
   email: string;
   password: string;
@@ -71,9 +72,12 @@ const Login: React.FC = () => {
             value={form.password}
             onChange={handleChange}
             icon={
-              <EyeIcon type={`${!visiblePass ? "primary" : "secondary"}`} />
+              !visiblePass ? (
+                  <EyeCloseIcon type="primary" onClick={handleToggleShowPassword} />
+              ) : (
+                  <EyeIcon type="primary" onClick={handleToggleShowPassword} />
+              )
             }
-            onIconClick={handleToggleShowPassword}
           />
         </label>
         <span className={styles.buttonSubmit}>

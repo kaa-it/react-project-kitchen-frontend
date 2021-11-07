@@ -4,19 +4,32 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 4px;
-    margin-top: 16px;
 }
 
 :local .tag {
     composes: caption from global;
     color: var(--text-primary-color);
     background: var(--input-color);
-    padding: 4px 8px;
     border-radius: 100px;
 }
 
-.tag:focus, .tag:hover {
+.tag:focus,
+.tag:hover {
     text-decoration: none;
     background: var(--accent-color);
     color: var(--text-primary-color);
+}
+
+:local .tagActiv {
+    composes: caption from global;
+    background: var(--accent-color);
+    color: var(--text-primary-color);
+    border-radius: 100px;
+}
+
+:local .tagPassive {
+    composes: caption from global;
+    color: var(--text-primary-color);
+    background: var(--input-color);
+    border-radius: 100px;
 }
