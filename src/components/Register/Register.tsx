@@ -82,7 +82,7 @@ const Register: React.FC = () => {
                     icon={!userNameInput.isValid && userNameInput.dirty ? <WarningIcon type={"warning"} /> : undefined}
                     error={!userNameInput.isValid && userNameInput.dirty}
                   />
-                  {userNameInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{userNameInput.inputValidation.inputError}</span>}
+                  {userNameInput.dirty && !userNameInput.isValid && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{userNameInput.inputValidation.inputError}</span>}
                 </fieldset>
 
                 <fieldset className="form-group mb-3">
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
                     icon={!emailInput.isValid && emailInput.dirty ? <WarningIcon type={"warning"} /> : undefined}
                     error={!emailInput.isValid && emailInput.dirty}
                   />
-                  {emailInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{emailInput.inputValidation.inputError}</span>}
+                  {emailInput.dirty && !emailInput.isValid && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{emailInput.inputValidation.inputError}</span>}
 
                 </fieldset>
 
@@ -117,7 +117,7 @@ const Register: React.FC = () => {
                       onIconClick={handleToggleShowPassword}
                       value={passwordInput.value}
                     />
-                    {passwordInput.dirty && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{passwordInput.inputValidation.inputError}</span>}
+                    {passwordInput.dirty && !passwordInput.isValid && <span style={{color: "#F20D33", paddingLeft: "16px"}}>{passwordInput.inputValidation.inputError}</span>}
                   </div>
                 </fieldset>
                 <Button
