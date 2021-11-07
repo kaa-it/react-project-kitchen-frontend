@@ -12,7 +12,7 @@
     display: flex;
     border-radius: 20px;
     align-items: center;
-    color: var(--text-alert-color);
+    color: var(--text-warning-color);
 }
 
 .text {

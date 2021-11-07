@@ -6,7 +6,6 @@
 
 :local .input {
   composes: text from global;
-  position: relative;
   background: #2f2f37;
   border-radius: 20px;
   width: 540px;
@@ -28,11 +27,11 @@
 :local .icon {
   position: absolute;
   right: 12px;
-  top: -1px;
+  top: 12px;
 }
 
 :local .input__error {
-  border: 2px solid #F20D33;
+  border: 2px solid var(--text-warning-color);
 }
 
 .icon :hover {

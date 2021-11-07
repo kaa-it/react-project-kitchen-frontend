@@ -23,3 +23,8 @@
   opacity: 0.75;
   color: #4c4cff;
 }
+
+:local .error {
+  color: var(--text-warning-color);
+  padding-left: 16px;
+}

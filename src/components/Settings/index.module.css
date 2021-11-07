@@ -25,7 +25,7 @@
 :local .exit {
     composes: text from global;
     text-align: center !important;
-    color: var(--text-alert-color);
+    color: var(--text-warning-color);
     cursor: pointer;
     border: none;
     background: none;

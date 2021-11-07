@@ -7,7 +7,7 @@ import { deleteArticle } from "../../../services/commonSlice";
 import Button from "../../common/Button/Button";
 import TrashIcon from "../../../icons/trash";
 import NewIcon from "../../../icons/new";
-import styles from './ArticleActions.module.css';
+import styles from "./ArticleActions.module.css";
 
 interface IArticleActionsProps {
   article: TArticle;
@@ -27,18 +27,16 @@ const ArticleActions: React.FC<IArticleActionsProps> = ({
   if (canModify) {
     return (
       <span className={styles.buttons}>
-        <Link
-          to={`/editor/${article.slug}`}
-        >
+        <Link to={`/editor/${article.slug}`}>
           <Button>
             <NewIcon type="primary" />
             <p className={styles.text}>Редактировать запись</p>
-            </Button>
+          </Button>
         </Link>
         <button className={`${styles.delete} ml-4`} onClick={del}>
-          <TrashIcon  type="alert" />
+          <TrashIcon type="warning" />
           <p className={styles.text}>Удалить запись</p>
-          </button>
+        </button>
       </span>
     );
   }
