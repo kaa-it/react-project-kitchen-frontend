@@ -1,4 +1,4 @@
-import ArticleMeta from "./ArticleMeta";
+import ArticleMeta from "./ArticleMeta/ArticleMeta";
 import CommentContainer from "./CommentContainer";
 import React, { useEffect } from "react";
 import agent from "../../agent";
@@ -6,6 +6,7 @@ import marked from "marked";
 import { useAppDispatch, useAppSelector } from "../../services";
 import { useParams } from "react-router";
 import { onArticleLoad, onArticleUnload } from "../../services/articleSlice";
+import styles from './index.module.css';
 
 interface IArticleParams {
   id: string;
@@ -46,14 +47,14 @@ const Article: React.FC = () => {
 
   return (
     <div className="article-page">
-      <div className="banner">
-        <div className="container">
-          <h1>{article.title}</h1>
+      <div className={styles.banner}>
+        <div className={styles.container}>
           <ArticleMeta article={article} canModify={canModify} />
         </div>
       </div>
 
       <div className="container page">
+        <h1 className={styles.title}>{article.title}</h1>
         <div className="row article-content">
           <div className="col-xs-12">
             <div dangerouslySetInnerHTML={markup} />
