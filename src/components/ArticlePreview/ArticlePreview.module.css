@@ -24,6 +24,11 @@
     white-space: nowrap;
 }
 
+.more:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
 .footer {
     display: flex;
     flex-direction: row;
