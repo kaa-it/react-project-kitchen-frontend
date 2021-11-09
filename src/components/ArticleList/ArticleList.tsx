@@ -1,8 +1,9 @@
-import ArticlePreview from './ArticlePreview/ArticlePreview';
-import ListPagination from './ListPagination';
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
+import ListPagination from '../ListPagination';
 import React from 'react';
-import { TArticle } from '../types';
-import { TPager } from '../services/articleListSlice';
+import { TArticle } from '../../types';
+import { TPager } from '../../services/articleListSlice';
+import styles from './ArticleList.module.css';
 
 interface IArticleListProps {
   pager: TPager | null;
@@ -20,11 +21,15 @@ const ArticleList: React.FC<IArticleListProps> = ({
   tag = null,
 }) => {
   if (!articles) {
-    return <div className="article-preview">Загрузка...</div>;
+    return <div className={styles.articlePreview + ' mt-8'}>Загрузка...</div>;
   }
 
   if (articles.length === 0) {
-    return <div className="article-preview">Пока здесь нет статей...</div>;
+    return (
+      <div className={styles.articlePreview + ' mt-8'}>
+        Здесь пусто... пока что.
+      </div>
+    );
   }
 
   return (

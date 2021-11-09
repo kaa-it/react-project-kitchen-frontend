@@ -1,5 +1,8 @@
 .formGroup {
     border: 0;
+    padding-inline: 0;
+    margin-inline: 0;
+    padding-block: 0;
 }
 
 :local .placeholder {

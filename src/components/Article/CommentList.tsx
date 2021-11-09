@@ -1,6 +1,6 @@
-import Comment from "./Comment";
-import React from "react";
-import { TComments, TUser } from "../../types";
+import Comment from './Comment/Comment';
+import React from 'react';
+import { TComments, TUser } from '../../types';
 
 interface ICommentListProps {
   comments: TComments;

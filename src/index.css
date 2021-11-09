@@ -1,5 +1,5 @@
 @import url("./box.css");
-@import url("./library.css");
+/* @import url("./library.css"); */
 
 :root {
   --offset-base-size: 4px;
@@ -16,6 +16,7 @@
 body {
   color: var(--text-primary-color);
   background: var(--background);
+  box-sizing: border-box;
 }
 
 /* Typography classes */

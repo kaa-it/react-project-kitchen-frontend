@@ -1,0 +1,24 @@
+.homePage {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.articles {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.tags {
+    flex: 0 0 25%;
+    max-width: 25%;
+}

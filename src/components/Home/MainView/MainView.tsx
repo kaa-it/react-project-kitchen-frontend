@@ -1,4 +1,4 @@
-import ArticleList from '../../ArticleList';
+import ArticleList from '../../ArticleList/ArticleList';
 import React from 'react';
 import agent from '../../../agent';
 import styles from './MainView.module.css';
@@ -43,7 +43,7 @@ const MainView: React.FC = () => {
   };
 
   return (
-    <div className="col-md-9">
+    <div className="mr-8">
       <div className={styles.feed}>
         {token && (
           <Tab value="feed" active={tab === 'feed'} onClick={switchTab}>

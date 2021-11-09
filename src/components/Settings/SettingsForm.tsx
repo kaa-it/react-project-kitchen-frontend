@@ -46,7 +46,7 @@ const SettingsForm: FC = () => {
 
   return (
     <form onSubmit={submitForm}>
-      <fieldset>
+      <fieldset className={styles.formGroup}>
         <fieldset className={styles.formGroup + ' mt-10'}>
           <span className={styles.placeholder + ' pl-4'}>
             Изображение профиля
@@ -69,7 +69,9 @@ const SettingsForm: FC = () => {
         </fieldset>
 
         <fieldset className={styles.formGroup + ' mt-3'}>
-          <span className={styles.placeholder + ' pl-4 mb-1'}>Информация о вас</span>
+          <span className={styles.placeholder + ' pl-4 mb-1'}>
+            Информация о вас
+          </span>
           <Textarea
             rows={8}
             value={state.bio}
