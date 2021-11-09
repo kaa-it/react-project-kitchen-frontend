@@ -74,97 +74,174 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="auth-page">
-      <div className="container page">
-        <div className="row">
-          <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center mb-10">Зарегистрироваться</h1>
-            <p className="text-xs-center">
-              <Link className={styles.link} to="/login">
-                Уже есть аккаунт?
-              </Link>
-            </p>
+    <div className={styles.register}>
+      <h2 className={styles.h2}>Зарегистрироваться</h2>
+      
+      <Link className={styles.link} to="/login">
+        Уже есть аккаунт?
+      </Link>
+      
+      <ListErrors errors={errors} />
+      
+      <form onSubmit={handleSubmitForm} className={styles.form}>
+        <label className={styles.label}>
+          <span className={styles.labelTitle}>Имя пользователя</span>
+          <Input
+            name="username"
+            type="text"
+            placeholder="Имя пользователя"
+            onChange={userNameInput.onChange}
+            onBlur={userNameInput.onBlur}
+            value={userNameInput.value}
+            icon={
+              !userNameInput.isValid && userNameInput.dirty ? (
+                <WarningIcon type={"warning"} />
+              ) : undefined
+            }
+            error={!userNameInput.isValid && userNameInput.dirty}
+          />
+        </label>
 
-            <ListErrors errors={errors} />
+        <label className={styles.label}>
+          <span className={styles.labelTitle}>E-mail</span>
+          <Input
+            name="email"
+            type="email"
+            placeholder="Почтовый адрес"
+            onChange={emailInput.onChange}
+            onBlur={emailInput.onBlur}
+            value={emailInput.value}
+            icon={
+              !emailInput.isValid && emailInput.dirty ? (
+                <WarningIcon type={"warning"} />
+              ) : undefined
+            }
+            error={!emailInput.isValid && emailInput.dirty}
+          />
+          {emailInput.dirty && !emailInput.isValid && (
+            <span className={styles.error}>
+              {emailInput.inputValidation.inputError}
+            </span>
+          )}
+        </label>
 
-            <form onSubmit={handleSubmitForm}>
-              <fieldset>
-                <fieldset className="form-group mb-3">
-                  <p className={styles.input__title}>Имя пользователя</p>
-                  <Input
-                    name="username"
-                    type="text"
-                    placeholder="Имя пользователя"
-                    onChange={userNameInput.onChange}
-                    onBlur={userNameInput.onBlur}
-                    value={userNameInput.value}
-                    icon={
-                      !userNameInput.isValid && userNameInput.dirty ? (
-                        <WarningIcon type={"warning"} />
-                      ) : undefined
-                    }
-                    error={!userNameInput.isValid && userNameInput.dirty}
-                  />
-                  {userNameInput.dirty && !userNameInput.isValid && (
-                    <span className={styles.error}>
-                      {userNameInput.inputValidation.inputError}
-                    </span>
-                  )}
-                </fieldset>
-
-                <fieldset className="form-group mb-3">
-                  <p className={styles.input__title}>E-mail</p>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Почтовый адрес"
-                    onChange={emailInput.onChange}
-                    onBlur={emailInput.onBlur}
-                    value={emailInput.value}
-                    icon={
-                      !emailInput.isValid && emailInput.dirty ? (
-                        <WarningIcon type={"warning"} />
-                      ) : undefined
-                    }
-                    error={!emailInput.isValid && emailInput.dirty}
-                  />
-                  {emailInput.dirty && !emailInput.isValid && (
-                    <span className={styles.error}>
-                      {emailInput.inputValidation.inputError}
-                    </span>
-                  )}
-                </fieldset>
-
-                <fieldset className="form-group mb-10">
-                  <p className={`${styles.input__title} pl-4`}>Пароль</p>
-                  <div className={styles.input__item}>
-                    <Input
-                      name="password"
-                      type={`${visiblePass ? "password" : "text"}`}
-                      placeholder="Пароль"
-                      onChange={passwordInput.onChange}
-                      onBlur={passwordInput.onBlur}
-                      icon={icon}
-                      error={!passwordInput.isValid && passwordInput.dirty}
-                      onIconClick={handleToggleShowPassword}
-                      value={passwordInput.value}
-                    />
-                    {passwordInput.dirty && !passwordInput.isValid && (
-                      <span className={styles.error}>
-                        {passwordInput.inputValidation.inputError}
-                      </span>
-                    )}
-                  </div>
-                </fieldset>
-                <Button type="submit" disabled={!validForm}>
-                  Зарегистрироваться
-                </Button>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
+        <label className={styles.label}>
+          <span className={styles.labelTitle}>Пароль</span>
+          <Input
+            name="password"
+            type={`${visiblePass ? "password" : "text"}`}
+            placeholder="Пароль"
+            onChange={passwordInput.onChange}
+            onBlur={passwordInput.onBlur}
+            icon={icon}
+            error={!passwordInput.isValid && passwordInput.dirty}
+            onIconClick={handleToggleShowPassword}
+            value={passwordInput.value}
+          />
+          {passwordInput.dirty && !passwordInput.isValid && (
+            <span className={styles.error}>
+              {passwordInput.inputValidation.inputError}
+            </span>
+          )}
+        </label>
+        <span className={styles.buttonSubmit}>
+        <Button type="submit" disabled={!validForm}>
+          Зарегистрироваться
+        </Button>
+        </span>
+      </form>
     </div>
+    // <div className="auth-page">
+    //   <div className="container page">
+    //     <div className="row">
+    //       <div className="col-md-6 offset-md-3 col-xs-12">
+    //         <h1 className="text-xs-center mb-10">Зарегистрироваться</h1>
+    //         <p className="text-xs-center">
+    //           <Link className={styles.link} to="/login">
+    //             Уже есть аккаунт?
+    //           </Link>
+    //         </p>
+
+    //         <ListErrors errors={errors} />
+
+    //         <form onSubmit={handleSubmitForm}>
+    //           <fieldset>
+    //             <fieldset className="form-group mb-3">
+    //               <p className={styles.input__title}>Имя пользователя</p>
+    //               <Input
+    //                 name="username"
+    //                 type="text"
+    //                 placeholder="Имя пользователя"
+    //                 onChange={userNameInput.onChange}
+    //                 onBlur={userNameInput.onBlur}
+    //                 value={userNameInput.value}
+    //                 icon={
+    //                   !userNameInput.isValid && userNameInput.dirty ? (
+    //                     <WarningIcon type={"warning"} />
+    //                   ) : undefined
+    //                 }
+    //                 error={!userNameInput.isValid && userNameInput.dirty}
+    //               />
+    //               {userNameInput.dirty && !userNameInput.isValid && (
+    //                 <span className={styles.error}>
+    //                   {userNameInput.inputValidation.inputError}
+    //                 </span>
+    //               )}
+    //             </fieldset>
+
+    //             <fieldset className="form-group mb-3">
+    //               <p className={styles.input__title}>E-mail</p>
+    //               <Input
+    //                 name="email"
+    //                 type="email"
+    //                 placeholder="Почтовый адрес"
+    //                 onChange={emailInput.onChange}
+    //                 onBlur={emailInput.onBlur}
+    //                 value={emailInput.value}
+    //                 icon={
+    //                   !emailInput.isValid && emailInput.dirty ? (
+    //                     <WarningIcon type={"warning"} />
+    //                   ) : undefined
+    //                 }
+    //                 error={!emailInput.isValid && emailInput.dirty}
+    //               />
+    //               {emailInput.dirty && !emailInput.isValid && (
+    //                 <span className={styles.error}>
+    //                   {emailInput.inputValidation.inputError}
+    //                 </span>
+    //               )}
+    //             </fieldset>
+
+    //             <fieldset className="form-group mb-10">
+    //               <p className={`${styles.input__title} pl-4`}>Пароль</p>
+    //               <div className={styles.input__item}>
+    //                 <Input
+    //                   name="password"
+    //                   type={`${visiblePass ? "password" : "text"}`}
+    //                   placeholder="Пароль"
+    //                   onChange={passwordInput.onChange}
+    //                   onBlur={passwordInput.onBlur}
+    //                   icon={icon}
+    //                   error={!passwordInput.isValid && passwordInput.dirty}
+    //                   onIconClick={handleToggleShowPassword}
+    //                   value={passwordInput.value}
+    //                 />
+    //                 {passwordInput.dirty && !passwordInput.isValid && (
+    //                   <span className={styles.error}>
+    //                     {passwordInput.inputValidation.inputError}
+    //                   </span>
+    //                 )}
+    //               </div>
+    //             </fieldset>
+    //             <Button type="submit" disabled={!validForm}>
+    //               Зарегистрироваться
+    //             </Button>
+    //           </fieldset>
+    //         </form>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
