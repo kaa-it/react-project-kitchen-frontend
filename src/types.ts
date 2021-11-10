@@ -48,6 +48,7 @@ export type TComment = {
   body: string;
   createdAt: Date;
   author: TProfile;
+  likesCount: number;
 };
 
 export type TComments = Array<TComment>;

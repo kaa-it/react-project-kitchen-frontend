@@ -4,6 +4,9 @@ import React from 'react';
 import { TComment, TUser } from '../../types';
 import ArticleInfo from './ArticleInfo/ArticleInfo';
 import styles from './Comment.module.css';
+import agent from '../../agent';
+import { useDispatch } from 'react-redux';
+import { dislikeComment, likeComment } from '../../services/articleSlice';
 
 interface ICommentProps {
   comment: TComment;
@@ -12,6 +15,14 @@ interface ICommentProps {
 }
 
 const Comment: React.FC<ICommentProps> = ({ comment, slug, currentUser }) => {
+  
+  const dispatch = useDispatch();
+
+  const handleLike = () => {
+    const fetcher = agent.Comments.dislike(comment.id);
+    dispatch(likeComment({ fetcher }));
+  }
+  
   const show =
     currentUser !== null && currentUser.username === comment.author.username;
   return (
@@ -24,6 +35,7 @@ const Comment: React.FC<ICommentProps> = ({ comment, slug, currentUser }) => {
           currentUser={comment.author}
           articleDate={comment.createdAt}
         />
+        <button style={{ color: '#000' }} onClick={handleLike}>Like</button>
         <DeleteButton show={show} slug={slug} commentId={comment.id} />
       </div>
     </div>

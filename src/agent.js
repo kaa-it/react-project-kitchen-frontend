@@ -3,7 +3,7 @@ import _superagent from "superagent";
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = "http://akruglov.ru:3000/api";
+const API_ROOT = "http://localhost:3000/api";
 
 const encode = encodeURIComponent;
 const responseBody = (res) => res.body;
@@ -71,6 +71,8 @@ const Comments = {
   delete: (slug, commentId) =>
     requests.del(`/articles/${slug}/comments/${commentId}`),
   forArticle: (slug) => requests.get(`/articles/${slug}/comments`),
+  like: (commentId) => requests.put(`/articles/article/comments/${commentId}/like`),
+  dislike: (commentId) => requests.del(`/articles/article/comments/${commentId}/dislike`),
 };
 
 const Profile = {
