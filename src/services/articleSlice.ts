@@ -162,25 +162,27 @@ const articleSlice = createSlice({
         }
       )
       .addCase(likeComment.fulfilled, (state, action) => {
-        const {id, likesCount } = action.payload.comment;
+        const {id, likesCount, isLiked } = action.payload.comment;
         // find this todo in the list
         if (state.comments) {
           const comment = state.comments.find(c => c.id === id);
           // update that todo
           if (comment) {
             comment.likesCount = likesCount;
+            comment.isLiked = isLiked;
             // note: .find() might return undefined, so you may want to handle that
           }
         }
       })
       .addCase(dislikeComment.fulfilled, (state, action) => {
-        const {id, likesCount } = action.payload.comment;
+        const {id, likesCount, isLiked } = action.payload.comment;
         // find this todo in the list
         if (state.comments) {
           const comment = state.comments.find(c => c.id === id);
           // update that todo
           if (comment) {
             comment.likesCount = likesCount;
+            comment.isLiked = isLiked;
             // note: .find() might return undefined, so you may want to handle that
           }
         }

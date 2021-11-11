@@ -17,3 +17,16 @@
     color: var(--text-primary-color);
     margin-bottom: 16px;
 }
+
+.like {
+    display: flex;
+}
+
+.likes {
+    color: var(--text-primary-color);
+    margin-right: 10px;
+}
+
+.liked {
+    color: var(--text-alert-color);
+}
