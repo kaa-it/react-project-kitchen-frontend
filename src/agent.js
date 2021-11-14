@@ -71,6 +71,8 @@ const Comments = {
   delete: (slug, commentId) =>
     requests.del(`/articles/${slug}/comments/${commentId}`),
   forArticle: (slug) => requests.get(`/articles/${slug}/comments`),
+  like: (commentId) => requests.put(`/articles/article/comments/${commentId}/like`),
+  dislike: (commentId) => requests.del(`/articles/article/comments/${commentId}/dislike`),
 };
 
 const Profile = {

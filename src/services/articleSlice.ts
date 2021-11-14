@@ -69,6 +69,43 @@ export const deleteComment = createAsyncThunk<
   }
 });
 
+type TLikeCommentResult = {
+  comment: TComment;
+};
+
+
+export interface ILikeCommentArgs {
+  fetcher: Promise<TLikeCommentResult>;
+}
+
+export const likeComment = createAsyncThunk<
+  TLikeCommentResult,
+  ILikeCommentArgs,
+  TThunkAPI
+>("article/comments/comment/like", async (args, thunkAPI) => {
+  try {
+    const res = await args.fetcher;
+    return res;
+  } catch (err) {
+    console.log("article/comments/comment/like", err);
+    return thunkAPI.rejectWithValue("");
+  }
+});
+
+export const dislikeComment = createAsyncThunk<
+  TLikeCommentResult,
+  ILikeCommentArgs,
+  TThunkAPI
+>("article/comments/comment/dislike", async (args, thunkAPI) => {
+  try {
+    const res = await args.fetcher;
+    return res;
+  } catch (err) {
+    console.log("article/comments/comment/dislike", err);
+    return thunkAPI.rejectWithValue("");
+  }
+});
+
 interface IArticleSliceState {
   article: TArticle | null;
   comments: TComments | null;
@@ -123,7 +160,33 @@ const articleSlice = createSlice({
             );
           }
         }
-      );
+      )
+      .addCase(likeComment.fulfilled, (state, action) => {
+        const {id, likesCount, isLiked } = action.payload.comment;
+        // find this todo in the list
+        if (state.comments) {
+          const comment = state.comments.find(c => c.id === id);
+          // update that todo
+          if (comment) {
+            comment.likesCount = likesCount;
+            comment.isLiked = isLiked;
+            // note: .find() might return undefined, so you may want to handle that
+          }
+        }
+      })
+      .addCase(dislikeComment.fulfilled, (state, action) => {
+        const {id, likesCount, isLiked } = action.payload.comment;
+        // find this todo in the list
+        if (state.comments) {
+          const comment = state.comments.find(c => c.id === id);
+          // update that todo
+          if (comment) {
+            comment.likesCount = likesCount;
+            comment.isLiked = isLiked;
+            // note: .find() might return undefined, so you may want to handle that
+          }
+        }
+      }); 
   },
 });
 
