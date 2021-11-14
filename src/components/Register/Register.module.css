@@ -1,16 +1,30 @@
-:local .input__title {
-  composes: text from global;
-  color: var(--text-primary-color);
-  margin-bottom: 0;
-  padding-left: 16px;
+.register {
+  composes: mt-2 from global;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-:local .input__item {
-  position: relative;
+:local .h2 {
+  composes: H2 from global;
+  composes: pb-4 from global;
+  composes: pt-4 from global;
+  composes: mt-10 from global;
+  color: white;
+}
+
+:local .label {
+  composes: mt-3 from global;
+  color: white;
+}
+:local .labelTitle {
+  composes: ml-4 from global;
 }
 
 :local .link {
   composes: text from global;
+  composes: mt-6 from global;
   color: #4c4cff;
 }
 
@@ -28,3 +42,25 @@
   color: var(--text-warning-color);
   padding-left: 16px;
 }
+
+.form {
+  composes: text from global;
+  composes: mt-3 from global;
+  display: flex;
+  flex-direction: column;
+  max-width: 540px;
+  width: 100%;
+}
+
+:local .buttonSubmit {
+  composes: text from global;
+  composes: mt-4 from global;
+  max-width: 205px;
+  align-self: flex-end;
+}
+
+:local .buttonText {
+  composes: pl-4 from global;
+  composes: pr-4 from global;
+}
+
