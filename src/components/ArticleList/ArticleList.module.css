@@ -1,0 +1,4 @@
+:local .articlePreview {
+    composes: text from global;
+    color: var(--text-primary-color)
+}

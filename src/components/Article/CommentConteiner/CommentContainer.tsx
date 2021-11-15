@@ -1,9 +1,10 @@
-import CommentInput from "./CommentInput";
-import CommentList from "./CommentList";
-import { Link } from "react-router-dom";
-import React from "react";
-import { TErrors, TComments, TUser } from "../../types";
-import ListErrors from "../ListErrors";
+import CommentInput from '../CommentInput/CommentInput';
+import CommentList from '../CommentList';
+import { Link } from 'react-router-dom';
+import React from 'react';
+import { TErrors, TComments, TUser } from '../../../types';
+import ListErrors from '../../ListErrors';
+import styles from './CommentContainer.module.css';
 
 interface ICommentContainerProps {
   comments: TComments;
@@ -20,7 +21,7 @@ const CommentContainer: React.FC<ICommentContainerProps> = ({
 }) => {
   if (currentUser) {
     return (
-      <div className="col-xs-12 col-md-8 offset-md-2">
+      <div className={styles.comments}>
         <div>
           <ListErrors errors={errors} />
           <CommentInput slug={slug} currentUser={currentUser} />
@@ -35,7 +36,7 @@ const CommentContainer: React.FC<ICommentContainerProps> = ({
     );
   } else {
     return (
-      <div className="col-xs-12 col-md-8 offset-md-2">
+      <div className={styles.comments}>
         <p>
           <Link to="/login">Sign in</Link>
           &nbsp;or&nbsp;

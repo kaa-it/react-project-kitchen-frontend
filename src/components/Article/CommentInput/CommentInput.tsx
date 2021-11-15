@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import agent from '../../agent';
-import { TUser } from '../../types';
-import { useAppDispatch } from '../../services';
-import { addComment } from '../../services/articleSlice';
+import agent from '../../../agent';
+import { TUser } from '../../../types';
+import { useAppDispatch } from '../../../services';
+import { addComment } from '../../../services/articleSlice';
 import styles from './CommentInput.module.css';
-import Button from '../common/Button/Button';
-import ArticleInfo from './ArticleInfo/ArticleInfo';
+import Button from '../../common/Button/Button';
+import ArticleInfo from '../ArticleInfo/ArticleInfo';
 
 interface ICommentInputProps {
   slug: string;

@@ -11,6 +11,7 @@
   border: none;
   margin-top: 4px;
   color: var(--text-primary-color);
+  box-sizing: border-box;
 }
 
 :local .textarea::placeholder {
@@ -23,7 +24,8 @@
 
 :local .icon {
   position: absolute;
-  left: 500px;
+  right: 12px;
+  top: 12px;
 }
 
 .icon :hover {

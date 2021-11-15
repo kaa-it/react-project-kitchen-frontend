@@ -1,15 +1,15 @@
-import ArticleList from "../ArticleList";
-import styles from "./Profile.module.css";
-import Tab from "../common/Tab/Tab";
-import React, { SyntheticEvent } from "react";
-import Button from "../common/Button/Button";
-import SettingsIcon from "../../icons/settings";
-import MinusIcon from "../../icons/minus";
-import PlusIcon from "../../icons/plus";
-import { useAppDispatch, useAppSelector } from "../../services";
-import { useHistory } from "react-router-dom";
-import agent from "../../agent";
-import { toggleFollowUser } from "../../services/articleListSlice";
+import ArticleList from '../ArticleList/ArticleList';
+import styles from './Profile.module.css';
+import Tab from '../common/Tab/Tab';
+import React, { SyntheticEvent } from 'react';
+import Button from '../common/Button/Button';
+import SettingsIcon from '../../icons/settings';
+import MinusIcon from '../../icons/minus';
+import PlusIcon from '../../icons/plus';
+import { useAppDispatch, useAppSelector } from '../../services';
+import { useHistory } from 'react-router-dom';
+import agent from '../../agent';
+import { toggleFollowUser } from '../../services/articleListSlice';
 
 interface IProfileRenderProps {
   favorite: boolean;
@@ -34,11 +34,11 @@ const ProfileRender: React.FC<IProfileRenderProps> = ({ favorite }) => {
 
   const switchTab = (name: string) => {
     switch (name) {
-      case "my": {
+      case 'my': {
         history.push(`/@${profile.username}`);
         break;
       }
-      case "favorites": {
+      case 'favorites': {
         history.push(`/@${profile.username}/favorites`);
         break;
       }
@@ -47,7 +47,7 @@ const ProfileRender: React.FC<IProfileRenderProps> = ({ favorite }) => {
 
   const editSettings = (e: SyntheticEvent) => {
     e.preventDefault();
-    history.push("/settings");
+    history.push('/settings');
   };
 
   const toggleFollow = (e: SyntheticEvent) => {
@@ -59,7 +59,7 @@ const ProfileRender: React.FC<IProfileRenderProps> = ({ favorite }) => {
   };
 
   return (
-    <div className="profile-page">
+    <div className={styles.profilePage}>
       <div className={styles.user_info}>
         <div className={styles.content}>
           <img
@@ -103,9 +103,9 @@ const ProfileRender: React.FC<IProfileRenderProps> = ({ favorite }) => {
         </div>
       </div>
 
-      <div className="container mt-6">
-        <div className="row">
-          <div className="col-xs-12 col-md-10 offset-md-1">
+      <div className={styles.container}>
+        <div className={styles.row}>
+          <div className={styles.articles}>
             <div className={styles.feed}>
               <Tab value="my" active={!favorite} onClick={switchTab}>
                 Мои статьи

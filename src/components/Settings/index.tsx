@@ -27,7 +27,7 @@ const Settings: FC = () => {
     <div className="mt-10">
       <div className={styles.container}>
         <div className={styles.row}>
-          <div className={styles.col + ' pl-4 pr-4'}>
+          <div className={styles.col}>
             <h1 className={styles.title}>Ваши настройки</h1>
 
             <ListErrors errors={errors} />
