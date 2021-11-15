@@ -1,13 +1,9 @@
-import DeleteButton from "./DeleteButton";
-import { Link } from "react-router-dom";
+import DeleteButton from "../DeleteButton";
 import React from "react";
-import { TComment, TUser } from "../../types";
-import ArticleInfo from "./ArticleInfo/ArticleInfo";
+import { TComment, TUser } from "../../../types";
+import ArticleInfo from "../ArticleInfo/ArticleInfo";
 import styles from "./Comment.module.css";
-import agent from "../../agent";
-import { useDispatch } from "react-redux";
-import { dislikeComment, likeComment } from "../../services/articleSlice";
-import LikeButton from "./LikeButton";
+import LikeButton from "../LikeButton";
 
 interface ICommentProps {
   comment: TComment;
@@ -16,13 +12,6 @@ interface ICommentProps {
 }
 
 const Comment: React.FC<ICommentProps> = ({ comment, slug, currentUser }) => {
-  const dispatch = useDispatch();
-
-  const handleLike = () => {
-    const fetcher = agent.Comments.dislike(comment.id);
-    dispatch(likeComment({ fetcher }));
-  };
-
   const show =
     currentUser !== null && currentUser.username === comment.author.username;
   return (
