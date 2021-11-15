@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../../services";
 import {
   addTag,
   loadEditorPage,
-  removeTag,
   unloadEditorPage,
   updateField,
 } from "../../services/editorSlice";
@@ -45,9 +44,9 @@ const Editor: React.FC = () => {
     };
   }, [slug]);
 
-
   const onChange = (e: ChangeEvent<{ name: string; value: string }>) => {
     dispatch(updateField({ key: e.target.name, value: e.target.value }));
+    console.log(e.target.value)
   };
 
   const watchForEnter = (ev: React.KeyboardEvent) => {
@@ -90,7 +89,7 @@ const Editor: React.FC = () => {
             onChange={onChange}
           />
         </label>
-        <label className={styles.label}> 
+        <label className={styles.label}>
           <span className={styles.labelTitle}>Описание</span>
           <Input
             type="text"
@@ -127,21 +126,17 @@ const Editor: React.FC = () => {
           <Input
             name="tag"
             placeholder="Теги через запятую"
-            value={tagInput}
+            value={tagList}
             onChange={onChange}
           />
         </label>
         <span className={styles.buttonSubmit}>
-        <Button
-          type="submit"
-          disabled={inProgress ? inProgress : undefined}
-        >
-          <span className={styles.buttonText}>Опубликовать</span>
-        </Button>
+          <Button type="submit" disabled={inProgress ? inProgress : undefined}>
+            <span className={styles.buttonText}>Опубликовать</span>
+          </Button>
         </span>
       </form>
     </div>
-
   );
 };
 
