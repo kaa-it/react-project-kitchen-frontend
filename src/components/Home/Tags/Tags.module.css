@@ -6,9 +6,11 @@
     background: var(--background-secondary);
     border-radius: 20px;
     padding: 16px;
+    box-sizing: border-box;
 }
 
 :local .title {
     composes: text from global;
     color: var(--text-primary-color);
+    margin-block-start: 0;
 }

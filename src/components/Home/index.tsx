@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   return (
     <div className={styles.homePage}>
       <Banner />
-      <div className={styles.container}>
+      <div className={styles.container + ' mt-8'}>
         <div className={styles.row}>
           <div className={styles.articles}>
             <MainView />
