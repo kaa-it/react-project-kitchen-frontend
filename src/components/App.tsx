@@ -2,7 +2,7 @@ import Header from "./Header/Header";
 import React, { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Article from "../components/Article";
-import Editor from "../components/Editor";
+import Editor from "./Editor/Editor";
 import Home from "./Home";
 import Login from "../components/Login/Login";
 import Profile from "./Profile/Profile";
