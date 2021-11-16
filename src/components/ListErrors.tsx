@@ -6,7 +6,7 @@ interface IListErrorsProps {
 }
 
 const ListErrors: React.FC<IListErrorsProps> = ({ errors }) => {
-  console.log(errors);
+  //console.log(errors);
 
   if (errors) {
     return (

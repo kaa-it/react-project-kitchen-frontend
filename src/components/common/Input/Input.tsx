@@ -16,7 +16,8 @@ const Input: React.FC<IInputProps> = ({
   onIconClick,
   onBlur,
   error,
-  disabled
+  disabled,
+  value
 }) => {
   return (
     <span className={inputStyle.inputWrap}>
@@ -24,6 +25,7 @@ const Input: React.FC<IInputProps> = ({
         className={`${inputStyle.input} ${error ? inputStyle.input__error : ''}`}
         type={type}
         name={name}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}

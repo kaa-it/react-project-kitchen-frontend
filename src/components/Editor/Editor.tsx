@@ -1,11 +1,10 @@
 import ListErrors from "../ListErrors";
 import styles from "./editor.module.css";
-import React, { ChangeEvent, FormEvent, useEffect } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import agent from "../../agent";
 import { useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../services";
 import {
-  addTag,
   loadEditorPage,
   unloadEditorPage,
   updateField,
@@ -25,10 +24,14 @@ const Editor: React.FC = () => {
 
   const { inProgress, errors } = useAppSelector((state) => state.common);
 
-  const { articleSlug, title, body, description, tagInput, tagList } =
+  const { articleSlug, title, body, description, tagList } =
     useAppSelector((state) => state.editor);
-
+  const [tagInput, setTagInput] = useState<string>('');
   const dispatch = useAppDispatch();
+  
+ useEffect(()=>{
+  setTagInput(tagList.join(','));
+ }, [tagList])
 
   useEffect(() => {
     if (slug) {
@@ -38,7 +41,7 @@ const Editor: React.FC = () => {
       return;
     }
     dispatch(loadEditorPage({ fetcher: null }));
-
+    
     return () => {
       dispatch(unloadEditorPage());
     };
@@ -46,24 +49,18 @@ const Editor: React.FC = () => {
 
   const onChange = (e: ChangeEvent<{ name: string; value: string }>) => {
     dispatch(updateField({ key: e.target.name, value: e.target.value }));
-    console.log(e.target.value)
-  };
-
-  const watchForEnter = (ev: React.KeyboardEvent) => {
-    if (ev.code == "Enter") {
-      ev.preventDefault();
-      dispatch(addTag());
-    }
   };
 
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
+    const tagArr = tagInput.split(',');
     const article: TArticleInput = {
       title,
       description,
       body,
-      tagList,
+      tagList: tagArr,
     };
+
     const fetcher = articleSlug
       ? agent.Articles.update(Object.assign(article, { slug: articleSlug }))
       : agent.Articles.create(article);
@@ -93,7 +90,7 @@ const Editor: React.FC = () => {
           <span className={styles.labelTitle}>Описание</span>
           <Input
             type="text"
-            name="image"
+            name="description"
             placeholder="О чем статья"
             value={description}
             onChange={onChange}
@@ -124,10 +121,10 @@ const Editor: React.FC = () => {
         <label className={styles.label}>
           <span className={styles.labelTitle}>Теги</span>
           <Input
-            name="tag"
+            name="tagInput"
             placeholder="Теги через запятую"
-            value={tagList}
-            onChange={onChange}
+            value= {tagInput}
+            onChange={e => setTagInput(e.target.value)}
           />
         </label>
         <span className={styles.buttonSubmit}>
