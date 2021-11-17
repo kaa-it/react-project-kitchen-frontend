@@ -24,14 +24,15 @@ const Editor: React.FC = () => {
 
   const { inProgress, errors } = useAppSelector((state) => state.common);
 
-  const { articleSlug, title, body, description, tagList } =
-    useAppSelector((state) => state.editor);
-  const [tagInput, setTagInput] = useState<string>('');
+  const { articleSlug, title, body, description, tagList } = useAppSelector(
+    (state) => state.editor
+  );
+  const [tagInput, setTagInput] = useState<string>("");
   const dispatch = useAppDispatch();
-  
- useEffect(()=>{
-  setTagInput(tagList.join(','));
- }, [tagList])
+
+  useEffect(() => {
+    setTagInput(tagList.join(","));
+  }, [tagList]);
 
   useEffect(() => {
     if (slug) {
@@ -41,7 +42,7 @@ const Editor: React.FC = () => {
       return;
     }
     dispatch(loadEditorPage({ fetcher: null }));
-    
+
     return () => {
       dispatch(unloadEditorPage());
     };
@@ -53,7 +54,7 @@ const Editor: React.FC = () => {
 
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
-    const tagArr = tagInput.split(',');
+    const tagArr = tagInput.split(",");
     const article: TArticleInput = {
       title,
       description,
@@ -123,8 +124,8 @@ const Editor: React.FC = () => {
           <Input
             name="tagInput"
             placeholder="Теги через запятую"
-            value= {tagInput}
-            onChange={e => setTagInput(e.target.value)}
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
           />
         </label>
         <span className={styles.buttonSubmit}>
