@@ -11,10 +11,10 @@ interface ITagListProps {
 const TagList: React.FC<ITagListProps> = ({ tags, onClickTag, tagActiv }) => {
   let onClick: ((ev: React.MouseEvent<HTMLAnchorElement>) => void) | undefined =
     undefined;
-
+  const uniqTags = Array.from(new Set(tags));
   return (
     <div className={styles.tags}>
-      {tags.map((tag) => {
+      {uniqTags.map((tag, index) => {
         if (onClickTag) {
           onClick = (ev) => {
             ev.preventDefault();
@@ -24,7 +24,7 @@ const TagList: React.FC<ITagListProps> = ({ tags, onClickTag, tagActiv }) => {
             <a
               href=""
               className={styles.tag + ' pt-1 pr-2 pb-1 pl-2'}
-              key={tag}
+              key={index}
               onClick={onClick}
             >
               {tag}
@@ -37,7 +37,7 @@ const TagList: React.FC<ITagListProps> = ({ tags, onClickTag, tagActiv }) => {
                 (tagActiv === tag ? styles.tagActiv : styles.tagPassive) +
                 ' pt-1 pr-2 pb-1 pl-2'
               }
-              key={tag}
+              key={index}
             >
               {tag}
             </span>
