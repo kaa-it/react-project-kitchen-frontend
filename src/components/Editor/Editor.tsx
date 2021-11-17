@@ -73,7 +73,7 @@ const Editor: React.FC = () => {
 
   return (
     <div className={styles.editor}>
-      <h2 className={styles.h2}>{captionEditor}</h2>
+      <span className={styles.h2}>{captionEditor}</span>
       <ListErrors errors={errors} />
 
       <form onSubmit={handleSubmitForm} className={styles.form}>

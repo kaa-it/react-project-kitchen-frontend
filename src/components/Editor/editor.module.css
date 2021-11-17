@@ -5,7 +5,8 @@
 }
 :local .h2 {
   composes: H2 from global;
-  composes: mt-10 from global;
+  margin-top: 56px;
+  margin-bottom: 16px;
   color: white;
 }
 .form {
