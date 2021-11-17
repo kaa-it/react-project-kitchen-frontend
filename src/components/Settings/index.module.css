@@ -1,4 +1,5 @@
 .container {
+    margin-top: 56px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -19,7 +20,8 @@
 }
 
 :local .title {
-    composes: headline from global;
+    composes: H2 from global;
+    color: var(--text-primary-color);
     text-align: center !important;
 }
 

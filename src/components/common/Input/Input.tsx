@@ -15,11 +15,13 @@ const Input: React.FC<IInputProps> = ({
   icon,
   onIconClick,
   onBlur,
-  error
+  error,
+   ...rest
 }) => {
   return (
     <span className={inputStyle.inputWrap}>
       <input
+      {...rest}
         className={`${inputStyle.input} ${error ? inputStyle.input__error : ''}`}
         type={type}
         name={name}
