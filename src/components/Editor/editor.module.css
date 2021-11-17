@@ -36,6 +36,7 @@
   composes: pr-4 from global;
   composes: text from global;
   color: white;
+  cursor: pointer;
 }
 
 textarea {

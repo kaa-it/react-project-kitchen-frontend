@@ -15,19 +15,19 @@ const Textarea: React.FC<IInputProps> = ({
   rows,
   icon,
   onIconClick,
-  resize,
-  value
+  resize, 
+  ...rest
 }) => {
   return (
     <span className={textareaStyle.textareaWrap}>
       <textarea
+      {...rest}
         style={{ resize: resize }}
         className={textareaStyle.textarea}
         name={name}
         placeholder={placeholder}
         onChange={onChange}
         rows={rows}
-        value={value}
       />
       {icon && (
         <span className={textareaStyle.icon} onClick={onIconClick}>
