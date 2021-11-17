@@ -1,10 +1,15 @@
 import React from "react";
 
-const AvatarIcon: React.FC = () => {
+interface IAvatarProps {
+  width?: string;
+  height?: string;
+}
+
+const AvatarIcon: React.FC<IAvatarProps> = ({ width, height }) => {
   return (
     <svg
-      width="24"
-      height="24"
+      width={width ? width : "24"}
+      height={height ? height : "24"}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
