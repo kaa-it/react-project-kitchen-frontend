@@ -10,9 +10,9 @@ import { useAppDispatch } from '../../services';
 import ArticleInfo from '../Article/ArticleInfo/ArticleInfo';
 import styles from './ArticlePreview.module.css';
 import TagList from '../common/TagList/TagList';
-
-const FAVORITED_CLASS = 'btn btn-sm btn-primary';
-const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
+import LikeIcon from "../../icons/like";
+const FAVORITED_CLASS = styles.active;
+const NOT_FAVORITED_CLASS = styles.inactive;
 
 interface IArticlePreviewProps {
   article: TArticle;
@@ -22,9 +22,12 @@ interface IArticlePreviewProps {
 const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article, tag }) => {
   const dispatch = useAppDispatch();
 
-  const favoriteButtonClass = article.favorited
+  const favoriteButtonIcon = article.favorited
+    ? <LikeIcon liked={true} />
+    : <LikeIcon liked={false} />;
+  const favoriteButtonClassName = article.favorited
     ? FAVORITED_CLASS
-    : NOT_FAVORITED_CLASS;
+    : NOT_FAVORITED_CLASS
 
   const changeFavorite = (params: IToggleFavoriteParams) => {
     dispatch(toggleFavorite(params));
@@ -48,8 +51,8 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article, tag }) => {
         />
 
         <div className="pull-xs-right">
-          <button className={favoriteButtonClass} onClick={handleClick}>
-            <i className="ion-heart" /> {article.favoritesCount}
+          <button className={`${styles.like} ${favoriteButtonClassName}`} onClick={handleClick}>
+            <span>{article.favoritesCount}</span> {favoriteButtonIcon}
           </button>
         </div>
       </div>

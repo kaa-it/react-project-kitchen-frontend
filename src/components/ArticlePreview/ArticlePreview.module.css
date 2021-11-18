@@ -24,6 +24,25 @@
     white-space: nowrap;
 }
 
+:local .like {
+    composes: text from global;
+    background: transparent;
+    display: flex;
+    border: unset;
+}
+
+:local .like span {
+    margin-right: 10px;
+}
+
+:local .like.active {
+    color: var(--text-warning-color);
+}
+
+:local .like.inactive {
+    color: var(--text-primary-color);
+}
+
 .more:hover {
     color: var(--accent-color);
     text-decoration: underline;
