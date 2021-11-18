@@ -32,7 +32,7 @@
 }
 
 :local .like span {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 :local .like.active {
