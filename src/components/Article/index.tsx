@@ -57,7 +57,10 @@ const Article: React.FC = () => {
       <div className={styles.article}>
         <h1 className={styles.title + ' mt-4 mb-4'}>{article.title}</h1>
         <div className={styles.row}>
-          <div dangerouslySetInnerHTML={markup} />
+          <div
+            dangerouslySetInnerHTML={markup}
+            className={styles.articleText}
+          />
           <TagList tags={article.tagList} onClickTag={undefined} />
         </div>
         <div className="article-actions" />

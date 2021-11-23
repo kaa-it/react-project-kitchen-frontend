@@ -35,6 +35,11 @@
     margin-right: auto;
 }
 
+:local .articleText {
+    composes: text from global;
+    color: var(--text-primary-color);
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -59,6 +64,7 @@
     border: none;
     background: 0 0 !important;
 }
+
 .like {
     display: flex;
 }
