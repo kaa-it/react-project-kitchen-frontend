@@ -10,7 +10,7 @@ import ProfileFavorites from "./Profile/ProfileFavorites";
 import Register from "../components/Register/Register";
 import Settings from "../components/Settings";
 import { useAppDispatch, useAppSelector } from "../services";
-import { appLoad } from "../services/commonSlice";
+import { appLoad, clearRedirect } from "../services/commonSlice";
 import agent from "../agent";
 
 const App: React.FC = () => {
@@ -31,8 +31,9 @@ const App: React.FC = () => {
   useEffect(() => {
     if (redirectTo) {
       history.push(redirectTo);
+      dispatch(clearRedirect());
     }
-  }, [redirectTo]);
+  });
 
   return (
     <>
