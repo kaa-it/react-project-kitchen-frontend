@@ -155,8 +155,11 @@ const commonSlice = createSlice({
       state.token = null;
       state.currentUser = null;
 
-      window.localStorage.removeItem('jwt');
+      window.localStorage.removeItem("jwt");
       agent.setToken(null);
+    },
+    clearRedirect: (state) => {
+      state.redirectTo = null;
     },
   },
   extraReducers: (builder) => {
@@ -233,6 +236,7 @@ const commonSlice = createSlice({
   },
 });
 
-export const { unloadAuthPage, logout, unloadSettingsPage } = commonSlice.actions;
+export const { unloadAuthPage, logout, unloadSettingsPage, clearRedirect } =
+  commonSlice.actions;
 
 export default commonSlice.reducer;

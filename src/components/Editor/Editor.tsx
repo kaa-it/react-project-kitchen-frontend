@@ -14,7 +14,7 @@ import { submitArticle } from "../../services/commonSlice";
 import Input from "../common/Input/Input";
 import Button from "../common/Button/Button";
 import Textarea from "../common/Textarea/Textarea";
-import FileIcon from "../../icons/file";
+
 interface IEditorParams {
   slug?: string;
 }
@@ -97,18 +97,18 @@ const Editor: React.FC = () => {
             onChange={onChange}
           />
         </label>
-        <label className={styles.label}>
-          <span className={styles.labelTitle}>Изображение</span>
-          <Input
-            type="text"
-            name="image"
-            placeholder="Изображение (опционально)"
-            value=""
-            onChange={onChange}
-            disabled={true}
-            icon={<FileIcon type="secondary" />}
-          />
-        </label>
+        {/*<label className={styles.label}>*/}
+        {/*  <span className={styles.labelTitle}>Изображение</span>*/}
+        {/*  <Input*/}
+        {/*    type="text"*/}
+        {/*    name="image"*/}
+        {/*    placeholder="Изображение (опционально)"*/}
+        {/*    value=""*/}
+        {/*    onChange={onChange}*/}
+        {/*    disabled={true}*/}
+        {/*    icon={<FileIcon type="secondary" />}*/}
+        {/*  />*/}
+        {/*</label>*/}
         <label className={styles.label}>
           <span className={styles.labelTitle}>Содержание</span>
           <Textarea

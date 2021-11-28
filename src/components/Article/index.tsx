@@ -1,13 +1,13 @@
-import ArticleMeta from './ArticleMeta/ArticleMeta';
-import CommentContainer from './CommentConteiner/CommentContainer';
-import React, { useEffect } from 'react';
-import agent from '../../agent';
-import marked from 'marked';
-import { useAppDispatch, useAppSelector } from '../../services';
-import { useParams } from 'react-router';
-import { onArticleLoad, onArticleUnload } from '../../services/articleSlice';
-import styles from './index.module.css';
-import TagList from '../common/TagList/TagList';
+import ArticleMeta from "./ArticleMeta/ArticleMeta";
+import CommentContainer from "./CommentConteiner/CommentContainer";
+import React, { useEffect } from "react";
+import agent from "../../agent";
+import { useAppDispatch, useAppSelector } from "../../services";
+import { useParams } from "react-router";
+import { onArticleLoad, onArticleUnload } from "../../services/articleSlice";
+import styles from "./index.module.css";
+import TagList from "../common/TagList/TagList";
+import ReactMarkdown from "react-markdown";
 
 interface IArticleParams {
   id: string;
@@ -39,10 +39,6 @@ const Article: React.FC = () => {
     return null;
   }
 
-  const markup = {
-    __html: marked(article.body, { sanitize: true }),
-  };
-
   const canModify =
     currentUser !== null && currentUser.username === article.author.username;
 
@@ -55,10 +51,10 @@ const Article: React.FC = () => {
       </div>
 
       <div className={styles.article}>
-        <h1 className={styles.title + ' mt-4 mb-4'}>{article.title}</h1>
+        <h1 className={styles.title + " mt-4 mb-4"}>{article.title}</h1>
         <div className={styles.row}>
-          <div
-            dangerouslySetInnerHTML={markup}
+          <ReactMarkdown
+            children={article.body}
             className={styles.articleText}
           />
           <TagList tags={article.tagList} onClickTag={undefined} />
@@ -66,7 +62,7 @@ const Article: React.FC = () => {
         <div className="article-actions" />
 
         <div className={styles.rowComments}>
-          <p className={styles.commentTitle + ' mt-8 mb-8'}>Комментарии</p>
+          <p className={styles.commentTitle + " mt-8 mb-8"}>Комментарии</p>
           <CommentContainer
             comments={comments || []}
             errors={commentErrors}
