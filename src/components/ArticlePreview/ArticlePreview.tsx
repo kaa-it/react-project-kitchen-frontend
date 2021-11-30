@@ -61,7 +61,7 @@ const ArticlePreview: React.FC<IArticlePreviewProps> = ({ article, tag }) => {
       <p className={styles.text}>{article.description}</p>
       <div className={styles.footer}>
         <Link to={`/article/${article.slug}`} className={styles.more}>
-          <span>Read more...</span>
+          <span>Читать...</span>
         </Link>
         <TagList tags={article.tagList} onClickTag={undefined} tagActiv={tag} />
       </div>

@@ -38,10 +38,10 @@ const CommentContainer: React.FC<ICommentContainerProps> = ({
     return (
       <div className={styles.comments}>
         <p>
-          <Link to="/login">Sign in</Link>
-          &nbsp;or&nbsp;
-          <Link to="/register">sign up</Link>
-          &nbsp;to add comments on this article.
+          <Link className="link" to="/login">Войдите</Link>
+          &nbsp;или&nbsp;
+          <Link className="link" to="/register">зарегистрируйтесь</Link>
+          &nbsp;чтобы оставить комментарии.
         </p>
 
         <CommentList

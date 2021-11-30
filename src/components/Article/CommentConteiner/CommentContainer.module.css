@@ -1,4 +1,6 @@
 .comments {
+    composes: text from global;
+    color: var(--text-primary-color); 
     position: relative;
     min-height: 1px;
     margin-left: auto;

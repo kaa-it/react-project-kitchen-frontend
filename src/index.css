@@ -30,6 +30,11 @@ body {
   color: var(--text-secondary-color);
 }
 
+.link {
+  composes: text-link;
+  color: var(--accent-color);
+}
+
 .caption {
   font-family: "Jet Brains Mono";
   font-size: 12px;
